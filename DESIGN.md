@@ -295,7 +295,7 @@ On mobile this row scrolls horizontally if it doesn't fit — it won't overflow 
 └──────────────────────────────────────┘
 ```
 - "Going To" button: full-width, `--going` fill when active, `--surface-raised` outline when inactive
-- Cleared notices: teal left-border callout, short one-line message ("Room cleared before this panel — early entry likely")
+- Cleared notices: teal left-border callout, short one-line message ("Room cleared before this panel")
 
 ---
 

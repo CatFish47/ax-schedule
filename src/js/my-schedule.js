@@ -34,17 +34,25 @@ export function render(container, allEvents) {
     return;
   }
 
-  const header = document.createElement('div');
-  header.className = 'my-schedule-header';
-  header.innerHTML = `<h2>My Schedule <span class="event-count">${myEvents.length} event${myEvents.length !== 1 ? 's' : ''}</span></h2>`;
-  container.appendChild(header);
-
-  // Group by day
+  // Group by day first so we can count distinct days for the header
   const byDay = {};
   for (const ev of myEvents) {
     if (!byDay[ev.day]) byDay[ev.day] = [];
     byDay[ev.day].push(ev);
   }
+  const dayCount = Object.keys(byDay).length;
+
+  const header = document.createElement('div');
+  header.className = 'my-schedule-header';
+  header.innerHTML = `
+    <h2>My Schedule
+      <span class="event-count">
+        ${myEvents.length} event${myEvents.length !== 1 ? 's' : ''}
+        across ${dayCount} day${dayCount !== 1 ? 's' : ''}
+      </span>
+    </h2>
+  `;
+  container.appendChild(header);
 
   for (const day of Object.keys(byDay).sort()) {
     const dayEvents = byDay[day];
@@ -70,6 +78,8 @@ export function render(container, allEvents) {
 
       const badges = [];
       if (ev.is_18_plus) badges.push('<span class="badge badge-18">18+</span>');
+      if (ev.cleared_before) badges.push('<span class="badge badge-clear" title="Room cleared before this panel">↑ cleared</span>');
+      if (ev.cleared_after) badges.push('<span class="badge badge-clear" title="Room cleared for next panel">↓ cleared</span>');
 
       card.innerHTML = `
         <span class="my-event-dot" aria-hidden="true">●</span>
@@ -77,7 +87,7 @@ export function render(container, allEvents) {
           <div class="my-event-meta">
             <span class="my-event-time">${ev.start_time} – ${ev.end_time}</span>
             <span class="my-event-room">${escapeHtml(ev.room)}</span>
-            ${badges.join('')}
+            ${badges.length ? `<span class="my-event-badges">${badges.join('')}</span>` : ''}
           </div>
           <div class="my-event-title">${escapeHtml(ev.title)}</div>
         </div>

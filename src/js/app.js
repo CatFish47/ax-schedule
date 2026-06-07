@@ -10,6 +10,24 @@ const DAYS = [
   { day: 4, label: 'Jul 5' },
 ];
 
+function addTablistKeyNav(container, itemSelector, getStateKey, setStateKey) {
+  container.addEventListener('keydown', e => {
+    const items = [...container.querySelectorAll(itemSelector)];
+    const idx = items.findIndex(el => el === document.activeElement);
+    if (idx === -1) return;
+    let next = -1;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % items.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + items.length) % items.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = items.length - 1;
+    if (next !== -1) {
+      e.preventDefault();
+      items[next].focus();
+      items[next].click();
+    }
+  });
+}
+
 async function init() {
   let allEvents;
   try {
@@ -31,7 +49,8 @@ async function init() {
     btn.className = 'day-pill';
     btn.dataset.day = day;
     btn.setAttribute('role', 'tab');
-    btn.setAttribute('aria-selected', day === 1 ? 'true' : 'false');
+    btn.setAttribute('aria-selected', 'false');
+    btn.tabIndex = -1;
     btn.textContent = label;
     btn.addEventListener('click', () => setState({ day }));
     daySelector.appendChild(btn);
@@ -47,26 +66,44 @@ async function init() {
     btn.className = 'nav-tab';
     btn.dataset.view = view;
     btn.setAttribute('role', 'tab');
-    btn.setAttribute('aria-selected', view === 'schedule' ? 'true' : 'false');
+    btn.setAttribute('aria-selected', 'false');
+    btn.tabIndex = -1;
     btn.textContent = label;
     btn.addEventListener('click', () => setState({ view }));
     navTabs.appendChild(btn);
   }
 
+  // ── Keyboard navigation (roving tabindex) ──
+  addTablistKeyNav(daySelector, '.day-pill');
+  addTablistKeyNav(navTabs, '.nav-tab');
+
   // ── Re-render on state changes ──
+  let prevView = null;
+  let prevDay = null;
+
   subscribe(state => {
-    // Sync day pills
+    // Reset scroll when switching views or days
+    if (prevView !== null && (state.view !== prevView || state.day !== prevDay)) {
+      mainContent.scrollTop = 0;
+      mainContent.scrollLeft = 0;
+    }
+    prevView = state.view;
+    prevDay = state.day;
+
+    // Sync day pills (roving tabindex)
     daySelector.querySelectorAll('.day-pill').forEach(btn => {
       const active = Number(btn.dataset.day) === state.day;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      btn.tabIndex = active ? 0 : -1;
     });
 
-    // Sync nav tabs
+    // Sync nav tabs (roving tabindex)
     navTabs.querySelectorAll('.nav-tab').forEach(btn => {
       const active = btn.dataset.view === state.view;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      btn.tabIndex = active ? 0 : -1;
     });
 
     // Show/hide day selector (only on schedule view)

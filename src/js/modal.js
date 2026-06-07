@@ -29,13 +29,13 @@ function buildModal(ev, going) {
   const clearedBefore = ev.cleared_before
     ? `<div class="modal-notice">
         <span class="notice-icon">↑</span>
-        Room cleared before this panel — early entry likely
+        Room cleared before this panel
        </div>`
     : '';
   const clearedAfter = ev.cleared_after
     ? `<div class="modal-notice">
         <span class="notice-icon">↓</span>
-        Room cleared for the next panel — exits may be managed
+        Room cleared for the next panel
        </div>`
     : '';
 

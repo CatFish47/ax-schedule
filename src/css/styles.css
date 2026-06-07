@@ -29,7 +29,6 @@
   --room-col-w:    120px;
   --header-h:      48px;
   --nav-h:         40px;
-  --day-bar-h:     44px;
 }
 
 /* ─── Reset ─────────────────────────────────────────────────────── */
@@ -69,10 +68,8 @@ button {
 /* ── App Header ── */
 #app-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--header-h);
-  padding: 0 16px;
+  flex-wrap: wrap;        /* day selector wraps to second row on mobile */
+  align-items: stretch;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
@@ -80,10 +77,15 @@ button {
 }
 
 .app-name {
+  height: var(--header-h);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
   font-size: var(--text-xl);
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.5px;
+  flex: 1 0 auto;         /* take remaining width so day-selector wraps */
 }
 
 .app-name span {
@@ -109,27 +111,32 @@ button {
   transition: color 0.15s, border-color 0.15s;
 }
 
-.nav-tab.active,
-.nav-tab:focus-visible {
+.nav-tab.active {
   color: var(--accent);
   border-bottom-color: var(--accent);
+}
+
+.nav-tab:focus-visible {
+  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .nav-tab:hover:not(.active) {
   color: var(--text);
 }
 
-/* ── Day Selector ── */
+/* ── Day Selector (lives inside #app-header) ── */
 #day-selector {
+  /* Mobile: full-width second row inside header */
+  width: 100%;
   display: flex;
   gap: 8px;
-  padding: 8px 16px;
-  height: var(--day-bar-h);
+  padding: 6px 16px 8px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
+  align-items: center;
+  border-top: 1px solid var(--border);
 }
 
 #day-selector::-webkit-scrollbar { height: 0; }
@@ -496,6 +503,12 @@ button {
   margin-right: 6px;
 }
 
+.my-event-badges {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
 .my-event-title {
   font-size: var(--text-base);
   font-weight: 500;
@@ -730,8 +743,23 @@ button {
 
 /* ─── Desktop Layout Overrides ───────────────────────────────────── */
 @media (min-width: 768px) {
+  /* Header: single row with day-selector on the right */
   #app-header {
+    flex-wrap: nowrap;
+  }
+
+  .app-name {
     padding: 0 24px;
+    flex: 0 0 auto;
+  }
+
+  #day-selector {
+    width: auto;
+    flex: 1;
+    justify-content: flex-end;
+    padding: 0 24px 0 16px;
+    border-top: none;
+    height: var(--header-h);
   }
 
   .my-schedule-list {
