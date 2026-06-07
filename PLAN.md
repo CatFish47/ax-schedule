@@ -179,10 +179,12 @@ The goal is awareness, not navigation — show users *where* their rooms are in 
 
 ### Stack
 
-- **Framework:** React (or vanilla JS with minimal dependencies — decide based on complexity of the grid view)
-- **Styling:** CSS with a dark-mode default (convention-friendly)
-- **Pre-processing script:** Python (`pandas` + `hashlib` + `re`) or Node.js
-- **No build server required for production:** The app can be a static site (`index.html` + `events.json`)
+- **Framework:** Vanilla JS with ES modules — no React, no build step (see `DESIGN.md`)
+- **Styling:** CSS custom properties, dark-mode default (see `DESIGN.md` for full palette)
+- **Pre-processing script:** Python (`hashlib` + `re` + `csv`)
+- **No build server required for production:** The app is a static site (`index.html` + `events.json`)
+
+See [`DESIGN.md`](./DESIGN.md) for color palette, typography, layout specs, component designs, and file structure.
 
 ### Event ID stability
 
