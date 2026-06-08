@@ -1,7 +1,5 @@
 import { GoingTo } from './storage.js';
 
-const COMPARE_KEY = 'ax26_compare';
-
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -19,19 +17,15 @@ function decode(str) {
     const arr = JSON.parse(atob(str.trim()));
     if (!Array.isArray(arr)) return null;
     return new Set(arr.filter(x => typeof x === 'string'));
-  } catch {
-    return null;
-  }
+  } catch { return null; }
 }
 
 export function getCompareSet() {
   try {
-    const raw = localStorage.getItem(COMPARE_KEY);
+    const raw = localStorage.getItem('ax26_compare');
     if (!raw) return null;
     return new Set(JSON.parse(raw));
-  } catch {
-    return null;
-  }
+  } catch { return null; }
 }
 
 let backdrop = null;
@@ -43,9 +37,7 @@ export function openShareModal(fromEl = null) {
 
   backdrop = document.createElement('div');
   backdrop.className = 'modal-backdrop';
-  backdrop.addEventListener('click', e => {
-    if (e.target === backdrop) closeShareModal();
-  });
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) closeShareModal(); });
 
   const modal = buildModal();
   backdrop.appendChild(modal);
@@ -74,54 +66,41 @@ function buildModal() {
   el.className = 'modal';
   el.setAttribute('role', 'dialog');
   el.setAttribute('aria-modal', 'true');
-  el.setAttribute('aria-label', 'Share Schedule');
+  el.setAttribute('aria-label', 'Export / Import');
 
   const myIds = GoingTo.getAll();
-  const hasExport = myIds.size > 0;
-  const exportCode = hasExport ? encode(myIds) : '';
-  const hasCompare = !!localStorage.getItem(COMPARE_KEY);
+  const exportCode = myIds.size > 0 ? encode(myIds) : '';
 
   el.innerHTML = `
     <div class="modal-header">
       <div class="modal-title-row">
-        <h2 class="modal-title">Share Schedule</h2>
+        <h2 class="modal-title">Export / Import</h2>
         <button class="modal-close" aria-label="Close">✕</button>
       </div>
     </div>
     <div class="share-modal-body">
       <section class="share-section">
         <h3 class="share-section-title">Your schedule code</h3>
-        ${hasExport ? `
+        ${exportCode ? `
           <div class="share-code-row">
             <textarea class="share-code" readonly spellcheck="false" rows="3">${escapeHtml(exportCode)}</textarea>
             <button class="share-copy-btn">Copy</button>
           </div>
-          <p class="share-hint">Share this code with a friend so they can compare schedules with you.</p>
+          <p class="share-hint">Share this code with a friend. To compare schedules, go to the <strong>Compare</strong> tab.</p>
         ` : `
-          <p class="share-hint">Mark some events as "Going To" to generate a shareable code.</p>
+          <p class="share-hint">Mark some events as "Going To" to generate a code.</p>
         `}
       </section>
 
       <section class="share-section">
-        <h3 class="share-section-title">Import a schedule</h3>
-        <textarea class="share-import-input" placeholder="Paste a schedule code here…" rows="3" spellcheck="false"></textarea>
+        <h3 class="share-section-title">Replace my schedule</h3>
+        <p class="share-hint">Paste a code to overwrite your current "Going To" list.</p>
+        <textarea class="share-import-input" placeholder="Paste schedule code here…" rows="3" spellcheck="false"></textarea>
         <div class="share-import-actions">
-          <button class="share-btn-primary" data-action="compare">Compare schedules</button>
           <button class="share-btn-secondary" data-action="replace">Replace my schedule</button>
         </div>
-        ${hasCompare ? `
-          <p class="share-hint share-hint--active">
-            <span class="compare-active-dot"></span>
-            Comparison overlay is active
-          </p>
-        ` : ''}
+        <p class="share-error" hidden></p>
       </section>
-
-      ${hasCompare ? `
-        <section class="share-section share-section--danger">
-          <button class="share-btn-danger">Clear comparison</button>
-        </section>
-      ` : ''}
     </div>
   `;
 
@@ -134,53 +113,29 @@ function buildModal() {
         copyBtn.textContent = 'Copied!';
         copyBtn.classList.add('copied');
         setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('copied'); }, 2000);
-      }).catch(() => {
-        el.querySelector('.share-code').select();
-      });
+      }).catch(() => el.querySelector('.share-code')?.select());
     });
   }
 
-  el.querySelectorAll('[data-action]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const raw = el.querySelector('.share-import-input').value.trim();
-      if (!raw) { showError(el, 'Paste a schedule code first.'); return; }
-      const decoded = decode(raw);
-      if (!decoded) { showError(el, 'Invalid schedule code — please check and try again.'); return; }
-
-      if (btn.dataset.action === 'compare') {
-        localStorage.setItem(COMPARE_KEY, JSON.stringify([...decoded]));
-        document.dispatchEvent(new CustomEvent('compare:change'));
-        closeShareModal();
-      } else {
-        const count = myIds.size;
-        if (!confirm(`Replace your current schedule (${count} event${count !== 1 ? 's' : ''}) with the imported one (${decoded.size} event${decoded.size !== 1 ? 's' : ''})?`)) return;
-        GoingTo.clear();
-        for (const id of decoded) GoingTo.add(id);
-        document.dispatchEvent(new CustomEvent('goingto:change'));
-        closeShareModal();
-      }
-    });
+  const errEl = el.querySelector('.share-error');
+  el.querySelector('[data-action="replace"]').addEventListener('click', () => {
+    const raw = el.querySelector('.share-import-input').value.trim();
+    if (!raw) { showErr(errEl, 'Paste a schedule code first.'); return; }
+    const decoded = decode(raw);
+    if (!decoded) { showErr(errEl, 'Invalid code — check it and try again.'); return; }
+    const count = myIds.size;
+    if (!confirm(`Replace your current schedule (${count} event${count !== 1 ? 's' : ''}) with the imported one (${decoded.size} event${decoded.size !== 1 ? 's' : ''})?`)) return;
+    GoingTo.clear();
+    for (const id of decoded) GoingTo.add(id);
+    document.dispatchEvent(new CustomEvent('goingto:change'));
+    closeShareModal();
   });
-
-  const clearBtn = el.querySelector('.share-btn-danger');
-  if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      localStorage.removeItem(COMPARE_KEY);
-      document.dispatchEvent(new CustomEvent('compare:change'));
-      closeShareModal();
-    });
-  }
 
   return el;
 }
 
-function showError(modal, message) {
-  let errEl = modal.querySelector('.share-error');
-  if (!errEl) {
-    errEl = document.createElement('p');
-    errEl.className = 'share-error';
-    modal.querySelector('.share-import-actions').insertAdjacentElement('afterend', errEl);
-  }
-  errEl.textContent = message;
-  setTimeout(() => errEl?.remove(), 4000);
+function showErr(el, msg) {
+  el.textContent = msg;
+  el.hidden = false;
+  setTimeout(() => { el.hidden = true; }, 4000);
 }

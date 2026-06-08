@@ -39,6 +39,7 @@
 
 /* ─── Reset ─────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 
 html, body {
   height: 100%;
@@ -935,19 +936,33 @@ button {
   outline-offset: 1px;
 }
 
-.compare-banner {
-  margin-left: auto;
+.compare-legend {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 3px 10px;
-  background: rgba(168, 85, 247, 0.12);
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  border-radius: 20px;
-  font-size: var(--text-xs);
-  color: var(--compare);
-  font-weight: 500;
+  gap: 10px;
+  flex-shrink: 0;
 }
+
+.compare-leg-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.compare-leg-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.compare-leg-dot--mine   { background: var(--going); }
+.compare-leg-dot--theirs { background: var(--compare); }
+.compare-leg-dot--shared { background: var(--shared); }
 
 /* ─── List View ──────────────────────────────────────────────────── */
 .list-view {
@@ -1227,6 +1242,119 @@ button {
 .share-section--danger {
   border-top: 1px solid var(--border);
   padding-top: 16px;
+}
+
+/* ─── Compare View ───────────────────────────────────────────────── */
+.compare-setup {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.compare-setup-card {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.compare-setup-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.compare-setup-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+
+.compare-start-btn {
+  align-self: flex-start;
+}
+
+.compare-grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: calc(var(--time-axis-w) + 300px);
+}
+
+.compare-header-wrap {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 4;
+  border-bottom: 2px solid var(--border);
+}
+
+.compare-active-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.compare-end-btn {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--surface);
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.compare-end-btn:hover {
+  border-color: var(--going);
+  color: var(--going);
+}
+
+.compare-header {
+  display: flex;
+}
+
+.compare-col-header {
+  flex: 1;
+  padding: 8px 12px;
+  border-left: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.compare-col-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.compare-col-label--mine   { color: var(--going); }
+.compare-col-label--friend { color: var(--compare); }
+
+.compare-col-count {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.compare-col {
+  flex: 1;
+  min-width: 150px;
+  border-left: 2px solid var(--border);
+  position: relative;
+}
+
+.compare-col-inner {
+  position: relative;
+  width: 100%;
 }
 
 /* ─── Focus visible global ───────────────────────────────────────── */

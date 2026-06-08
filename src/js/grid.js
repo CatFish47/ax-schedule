@@ -15,70 +15,43 @@ function escapeHtml(str) {
 }
 
 function getDayBounds(events) {
-  const starts = events.map(e => e.start_int);
-  const rawMin = Math.min(...starts);
-  const dayStart = Math.floor(rawMin / 30) * 30;
-  const ends = events.map(e => e.end_int);
-  const rawMax = Math.max(...ends);
-  const dayEnd = Math.ceil(rawMax / 30) * 30;
+  const dayStart = Math.floor(Math.min(...events.map(e => e.start_int)) / 30) * 30;
+  const dayEnd   = Math.ceil(Math.max(...events.map(e => e.end_int))   / 30) * 30;
   return { dayStart, dayEnd };
 }
 
 function buildTimeAxis(dayStart, dayEnd) {
   const col = document.createElement('div');
   col.className = 'grid-time-axis';
-
-  const totalMin = dayEnd - dayStart;
-  col.style.height = `${totalMin * PX_PER_MIN}px`;
-
+  col.style.height = `${(dayEnd - dayStart) * PX_PER_MIN}px`;
   for (let t = dayStart; t <= dayEnd; t += 30) {
     const tick = document.createElement('div');
     tick.className = 'time-tick' + (t % 60 === 0 ? ' time-tick-hour' : ' time-tick-half');
     tick.style.top = `${(t - dayStart) * PX_PER_MIN}px`;
-    if (t % 60 === 0) {
-      tick.textContent = formatTime(t);
-    }
+    if (t % 60 === 0) tick.textContent = formatTime(t);
     col.appendChild(tick);
   }
   return col;
 }
 
-function buildEventCard(ev, slot, totalSlots, dayStart, goingSet, compareSet) {
-  const mine = goingSet.has(ev.id);
-  const theirs = compareSet?.has(ev.id) ?? false;
-
-  let stateClass = '';
-  if (compareSet) {
-    if (mine && theirs) stateClass = ' event-card--shared';
-    else if (mine)      stateClass = ' event-card--going';
-    else if (theirs)    stateClass = ' event-card--compare';
-  } else if (mine) {
-    stateClass = ' event-card--going';
-  }
-
+function buildEventCard(ev, slot, totalSlots, dayStart, going) {
   const card = document.createElement('div');
-  card.className = 'event-card' + stateClass;
+  card.className = 'event-card' + (going ? ' event-card--going' : '');
   card.setAttribute('tabindex', '0');
   card.setAttribute('role', 'button');
   card.setAttribute('aria-label', `${ev.title}, ${ev.start_time} to ${ev.end_time}`);
   card.dataset.id = ev.id;
 
-  const top = (ev.start_int - dayStart) * PX_PER_MIN;
+  const top    = (ev.start_int - dayStart) * PX_PER_MIN;
   const height = Math.max((ev.end_int - ev.start_int) * PX_PER_MIN, MIN_EVENT_HEIGHT);
-  const widthPct = 100 / totalSlots;
-  const leftPct = slot * widthPct;
-
-  card.style.cssText = `
-    top: ${top}px;
-    height: ${height}px;
-    width: calc(${widthPct}% - 2px);
-    left: calc(${leftPct}% + 1px);
-  `;
+  const wPct   = 100 / totalSlots;
+  const lPct   = slot * wPct;
+  card.style.cssText = `top:${top}px;height:${height}px;width:calc(${wPct}% - 2px);left:calc(${lPct}% + 1px);`;
 
   const badges = [];
-  if (ev.is_18_plus) badges.push('<span class="badge badge-18">18+</span>');
+  if (ev.is_18_plus)     badges.push('<span class="badge badge-18">18+</span>');
   if (ev.cleared_before) badges.push('<span class="badge badge-clear" title="Room cleared before">↑</span>');
-  if (ev.cleared_after) badges.push('<span class="badge badge-clear" title="Room cleared after">↓</span>');
+  if (ev.cleared_after)  badges.push('<span class="badge badge-clear" title="Room cleared after">↓</span>');
 
   card.innerHTML = `
     ${badges.length ? `<div class="card-badges">${badges.join('')}</div>` : ''}
@@ -89,11 +62,10 @@ function buildEventCard(ev, slot, totalSlots, dayStart, goingSet, compareSet) {
   function open() { openModal(ev, card); }
   card.addEventListener('click', open);
   card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-
   return card;
 }
 
-function buildRoomColumn(room, events, dayStart, dayEnd, goingSet, compareSet) {
+function buildRoomColumn(room, events, dayStart, dayEnd, goingSet) {
   const col = document.createElement('div');
   col.className = 'room-col';
   col.dataset.room = room;
@@ -103,19 +75,16 @@ function buildRoomColumn(room, events, dayStart, dayEnd, goingSet, compareSet) {
   inner.style.height = `${(dayEnd - dayStart) * PX_PER_MIN}px`;
 
   const slotMap = computeOverlaps(events);
-
   for (const ev of events) {
     const { slot, totalSlots } = slotMap[ev.id] || { slot: 0, totalSlots: 1 };
-    const card = buildEventCard(ev, slot, totalSlots, dayStart, goingSet, compareSet);
-    inner.appendChild(card);
+    inner.appendChild(buildEventCard(ev, slot, totalSlots, dayStart, goingSet.has(ev.id)));
   }
 
   col.appendChild(inner);
   return col;
 }
 
-// events: already filtered for the correct day + user filters
-export function render(container, events, compareSet = null) {
+export function render(container, events) {
   const goingSet = GoingTo.getAll();
 
   if (events.length === 0) {
@@ -136,32 +105,24 @@ export function render(container, events, compareSet = null) {
   const grid = document.createElement('div');
   grid.className = 'timeline-grid';
 
-  // ── Sticky header wrapper ──
+  // ── Sticky header ──
   const headerWrap = document.createElement('div');
   headerWrap.className = 'grid-header-wrap';
 
   const headerArea = document.createElement('div');
   headerArea.className = 'grid-header';
-
-  const axisSpacer = document.createElement('div');
-  axisSpacer.className = 'grid-header-spacer';
-  headerArea.appendChild(axisSpacer);
-
+  headerArea.appendChild(Object.assign(document.createElement('div'), { className: 'grid-header-spacer' }));
   for (const group of roomGroups) {
-    const groupHeader = document.createElement('div');
-    groupHeader.className = 'group-header';
-    groupHeader.style.width = `${group.rooms.length * ROOM_COL_W}px`;
-    groupHeader.textContent = group.label;
-    headerArea.appendChild(groupHeader);
+    const g = document.createElement('div');
+    g.className = 'group-header';
+    g.style.width = `${group.rooms.length * ROOM_COL_W}px`;
+    g.textContent = group.label;
+    headerArea.appendChild(g);
   }
 
   const roomHeaderRow = document.createElement('div');
   roomHeaderRow.className = 'room-header-row';
-
-  const axisSpacer2 = document.createElement('div');
-  axisSpacer2.className = 'grid-header-spacer';
-  roomHeaderRow.appendChild(axisSpacer2);
-
+  roomHeaderRow.appendChild(Object.assign(document.createElement('div'), { className: 'grid-header-spacer' }));
   for (const group of roomGroups) {
     for (const room of group.rooms) {
       const rh = document.createElement('div');
@@ -179,20 +140,14 @@ export function render(container, events, compareSet = null) {
   // ── Body ──
   const body = document.createElement('div');
   body.className = 'grid-body';
-
-  const timeAxis = buildTimeAxis(dayStart, dayEnd);
-  body.appendChild(timeAxis);
+  body.appendChild(buildTimeAxis(dayStart, dayEnd));
 
   for (const group of roomGroups) {
     const groupCol = document.createElement('div');
     groupCol.className = 'group-col';
-
     for (const room of group.rooms) {
-      const roomEvents = byRoom[room] || [];
-      const col = buildRoomColumn(room, roomEvents, dayStart, dayEnd, goingSet, compareSet);
-      groupCol.appendChild(col);
+      groupCol.appendChild(buildRoomColumn(room, byRoom[room] || [], dayStart, dayEnd, goingSet));
     }
-
     body.appendChild(groupCol);
   }
 
@@ -200,13 +155,9 @@ export function render(container, events, compareSet = null) {
   container.appendChild(grid);
 }
 
-export function updateGoingState(container, compareSet = null) {
+export function updateGoingState(container) {
   const goingSet = GoingTo.getAll();
   container.querySelectorAll('.event-card').forEach(card => {
-    const mine = goingSet.has(card.dataset.id);
-    const theirs = compareSet?.has(card.dataset.id) ?? false;
-    card.classList.toggle('event-card--going',   compareSet ? (mine && !theirs) : mine);
-    card.classList.toggle('event-card--compare', !!compareSet && theirs && !mine);
-    card.classList.toggle('event-card--shared',  !!compareSet && mine && theirs);
+    card.classList.toggle('event-card--going', goingSet.has(card.dataset.id));
   });
 }

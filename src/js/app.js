@@ -3,6 +3,7 @@ import { getEvents, getEventsForDay, applyFilters } from './data.js';
 import { render as renderGrid, updateGoingState as updateGridGoing } from './grid.js';
 import { render as renderList, updateGoingState as updateListGoing } from './list.js';
 import { render as renderMySchedule } from './my-schedule.js';
+import { render as renderCompare } from './compare.js';
 import { openShareModal, getCompareSet } from './share.js';
 
 const DAYS = [
@@ -52,10 +53,10 @@ async function init() {
     return;
   }
 
-  const daySelector  = document.getElementById('day-selector');
-  const navTabs      = document.getElementById('nav-tabs');
-  const toolbar      = document.getElementById('schedule-toolbar');
-  const mainContent  = document.getElementById('app-main');
+  const daySelector = document.getElementById('day-selector');
+  const navTabs     = document.getElementById('nav-tabs');
+  const toolbar     = document.getElementById('schedule-toolbar');
+  const mainContent = document.getElementById('app-main');
 
   let compareSet = getCompareSet();
 
@@ -72,10 +73,11 @@ async function init() {
     daySelector.appendChild(btn);
   }
 
-  // ── Nav tabs + share button ─────────────────────────────────────
+  // ── Nav tabs + Export/Import button ────────────────────────────
   const views = [
     { view: 'schedule',    label: 'Schedule' },
     { view: 'my-schedule', label: 'My Schedule' },
+    { view: 'compare',     label: 'Compare' },
   ];
   for (const { view, label } of views) {
     const btn = document.createElement('button');
@@ -89,16 +91,14 @@ async function init() {
     navTabs.appendChild(btn);
   }
 
-  const shareBtn = document.createElement('button');
-  shareBtn.className = 'nav-share-btn';
-  shareBtn.textContent = 'Share';
-  shareBtn.setAttribute('aria-label', 'Share or import schedule');
-  shareBtn.addEventListener('click', () => openShareModal(shareBtn));
-  navTabs.appendChild(shareBtn);
+  const exportImportBtn = document.createElement('button');
+  exportImportBtn.className = 'nav-share-btn';
+  exportImportBtn.textContent = 'Export / Import';
+  exportImportBtn.setAttribute('aria-label', 'Export or import schedule');
+  exportImportBtn.addEventListener('click', () => openShareModal(exportImportBtn));
+  navTabs.appendChild(exportImportBtn);
 
   // ── Schedule toolbar ────────────────────────────────────────────
-
-  // Grid / List toggle
   const modeToggle = document.createElement('div');
   modeToggle.className = 'mode-toggle';
   modeToggle.setAttribute('role', 'group');
@@ -106,13 +106,11 @@ async function init() {
 
   const gridBtn = document.createElement('button');
   gridBtn.className = 'mode-btn mode-btn--active';
-  gridBtn.dataset.mode = 'grid';
   gridBtn.setAttribute('aria-pressed', 'true');
   gridBtn.innerHTML = '▦ Grid';
 
   const listBtn = document.createElement('button');
   listBtn.className = 'mode-btn';
-  listBtn.dataset.mode = 'list';
   listBtn.setAttribute('aria-pressed', 'false');
   listBtn.innerHTML = '≡ List';
 
@@ -121,15 +119,12 @@ async function init() {
   modeToggle.appendChild(gridBtn);
   modeToggle.appendChild(listBtn);
 
-  // Separator
   const sep = document.createElement('div');
   sep.className = 'toolbar-sep';
 
-  // Filters
   const filtersEl = document.createElement('div');
   filtersEl.className = 'toolbar-filters';
 
-  // 18+ toggle
   const adultToggle = document.createElement('button');
   adultToggle.className = 'filter-toggle filter-toggle--active';
   adultToggle.setAttribute('aria-pressed', 'true');
@@ -140,7 +135,6 @@ async function init() {
     setState({ filters: { ...filters, show18Plus: !filters.show18Plus } });
   });
 
-  // From select
   const fromLabel = document.createElement('label');
   fromLabel.className = 'filter-label';
   fromLabel.textContent = 'From';
@@ -155,7 +149,6 @@ async function init() {
     fromSelect.appendChild(opt);
   }
 
-  // To select
   const toLabel = document.createElement('label');
   toLabel.className = 'filter-label';
   toLabel.textContent = 'To';
@@ -188,32 +181,21 @@ async function init() {
   filtersEl.appendChild(fromLabel);
   filtersEl.appendChild(toLabel);
 
-  // Compare banner
-  const compareBanner = document.createElement('div');
-  compareBanner.className = 'compare-banner';
-  compareBanner.setAttribute('aria-live', 'polite');
-  compareBanner.innerHTML = '<span>Comparing schedules</span>';
-  compareBanner.hidden = !compareSet;
-
   toolbar.innerHTML = '';
   toolbar.appendChild(modeToggle);
   toolbar.appendChild(sep);
   toolbar.appendChild(filtersEl);
-  toolbar.appendChild(compareBanner);
 
   // ── Keyboard nav ───────────────────────────────────────────────
   addTablistKeyNav(daySelector, '.day-pill');
   addTablistKeyNav(navTabs, '.nav-tab');
 
-  // ── Helper: render schedule view ───────────────────────────────
+  // ── Render helpers ─────────────────────────────────────────────
   function renderSchedule(state) {
     const dayEvents = getEventsForDay(allEvents, state.day);
     const filtered  = applyFilters(dayEvents, state.filters);
-    if (state.scheduleMode === 'grid') {
-      renderGrid(mainContent, filtered, compareSet);
-    } else {
-      renderList(mainContent, filtered, compareSet);
-    }
+    if (state.scheduleMode === 'grid') renderGrid(mainContent, filtered);
+    else                               renderList(mainContent, filtered);
   }
 
   // ── State subscriber ───────────────────────────────────────────
@@ -221,7 +203,6 @@ async function init() {
   let prevDay  = null;
 
   subscribe(state => {
-    // Reset scroll on view or day switch
     if (prevView !== null && (state.view !== prevView || state.day !== prevDay)) {
       mainContent.scrollTop = 0;
       mainContent.scrollLeft = 0;
@@ -229,7 +210,7 @@ async function init() {
     prevView = state.view;
     prevDay  = state.day;
 
-    // Day pills (roving tabindex)
+    // Day pills
     daySelector.querySelectorAll('.day-pill').forEach(btn => {
       const active = Number(btn.dataset.day) === state.day;
       btn.classList.toggle('active', active);
@@ -237,7 +218,7 @@ async function init() {
       btn.tabIndex = active ? 0 : -1;
     });
 
-    // Nav tabs (roving tabindex)
+    // Nav tabs
     navTabs.querySelectorAll('.nav-tab').forEach(btn => {
       const active = btn.dataset.view === state.view;
       btn.classList.toggle('active', active);
@@ -246,10 +227,11 @@ async function init() {
     });
 
     const isSchedule = state.view === 'schedule';
-    daySelector.style.display = isSchedule ? '' : 'none';
-    toolbar.style.display      = isSchedule ? '' : 'none';
+    const needsDays  = state.view === 'schedule' || state.view === 'compare';
+    daySelector.style.display = needsDays   ? '' : 'none';
+    toolbar.style.display     = isSchedule  ? '' : 'none';
 
-    // Mode toggle buttons
+    // Mode toggle
     gridBtn.classList.toggle('mode-btn--active', state.scheduleMode === 'grid');
     listBtn.classList.toggle('mode-btn--active', state.scheduleMode === 'list');
     gridBtn.setAttribute('aria-pressed', state.scheduleMode === 'grid' ? 'true' : 'false');
@@ -259,37 +241,38 @@ async function init() {
     adultToggle.classList.toggle('filter-toggle--active', state.filters.show18Plus);
     adultToggle.setAttribute('aria-pressed', state.filters.show18Plus ? 'true' : 'false');
 
-    // Compare banner
-    compareBanner.hidden = !compareSet;
-
     // Render
-    if (isSchedule) {
+    if (state.view === 'schedule') {
       renderSchedule(state);
-    } else {
+    } else if (state.view === 'my-schedule') {
       renderMySchedule(mainContent, allEvents);
+    } else {
+      renderCompare(mainContent, allEvents, state.day, compareSet);
     }
   });
 
-  // Going-to changes (fast CSS update or full re-render)
+  // Going-to changes
   document.addEventListener('goingto:change', () => {
     const state = getState();
     if (state.view === 'schedule') {
-      if (state.scheduleMode === 'grid') updateGridGoing(mainContent, compareSet);
-      else                               updateListGoing(mainContent, compareSet);
-    } else {
+      if (state.scheduleMode === 'grid') updateGridGoing(mainContent);
+      else                               updateListGoing(mainContent);
+    } else if (state.view === 'my-schedule') {
       renderMySchedule(mainContent, allEvents);
+    } else {
+      renderCompare(mainContent, allEvents, state.day, compareSet);
     }
   });
 
-  // Compare schedule changes (full re-render needed)
+  // Compare schedule changes
   document.addEventListener('compare:change', () => {
     compareSet = getCompareSet();
-    compareBanner.hidden = !compareSet;
     const state = getState();
-    if (state.view === 'schedule') renderSchedule(state);
+    if (state.view === 'compare') {
+      renderCompare(mainContent, allEvents, state.day, compareSet);
+    }
   });
 
-  // Initial render
   setState({ day: 1, view: 'schedule' });
 }
 
