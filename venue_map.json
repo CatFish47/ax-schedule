@@ -1,0 +1,71 @@
+{
+  "maps": {
+    "campus": {
+      "label": "Campus Directory",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_Convention-Directory-scaled.png"
+    },
+    "area": {
+      "label": "Area Map",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/05/AX-26-Map_Area-legend.png"
+    },
+    "jw-marriott": {
+      "label": "JW Marriott",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_JW-Marriott-scaled.png"
+    },
+    "line-locations": {
+      "label": "Line Locations",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_Line-Locations-scaled.png"
+    },
+    "south-hall": {
+      "label": "South Exhibit Hall",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_South-Hall-scaled.png"
+    },
+    "west-hall": {
+      "label": "West Exhibit Hall",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_West-Hall-scaled.png"
+    },
+    "kentia": {
+      "label": "Kentia Exhibit Hall & Artist Alley",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_Kentia-Hall-scaled.png"
+    },
+    "ax-crossing": {
+      "label": "AX Crossing",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_AX-Crossing-1-scaled.png"
+    },
+    "peacock-place": {
+      "label": "Peacock Place",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_Peacock-Place-scaled.png"
+    },
+    "entertainment-arena": {
+      "label": "Entertainment Arena",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_Entertainment-Arena-scaled.png"
+    },
+    "activation-spaces": {
+      "label": "Activation Spaces",
+      "url": "https://www.anime-expo.org/wp-content/uploads/2026/06/AX-26-Map_EMO-scaled.png"
+    }
+  },
+  "rooms": {
+    "402A":                          ["campus", "line-locations"],
+    "403AB":                         ["campus", "line-locations"],
+    "404AB":                         ["campus", "line-locations"],
+    "406AB":                         ["campus", "line-locations"],
+    "408AB":                         ["campus", "line-locations"],
+    "409AB":                         ["campus", "line-locations"],
+    "411":                           ["campus"],
+    "511ABC":                        ["campus", "line-locations"],
+    "515 AB":                        ["campus"],
+    "Concourse Hall E":              ["campus"],
+    "Petree Hall":                   ["campus", "line-locations"],
+    "JW Diamond":                    ["jw-marriott", "area", "campus", "line-locations"],
+    "JW Platinum":                   ["jw-marriott", "area", "campus", "line-locations"],
+    "Crypto.com Arena":              ["peacock-place", "area", "campus", "line-locations"],
+    "Main Events (Crypto.com Arena)":["peacock-place", "area", "campus", "line-locations"],
+    "Peacock Theater":               ["peacock-place", "area", "campus", "line-locations"],
+    "AX Crossing":                   ["ax-crossing", "campus"],
+    "AX Dance":                      ["campus"],
+    "Beer Garden at Peacock Place":  ["peacock-place", "campus"],
+    "Lounge 21":                     ["campus"],
+    "The Novo":                      ["area", "campus"]
+  }
+}

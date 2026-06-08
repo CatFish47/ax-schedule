@@ -1,6 +1,15 @@
 import { GoingTo } from './storage.js';
 import { setState } from './store.js';
 
+let _venueMap = null;
+export function initVenueMap(data) { _venueMap = data; }
+
+function getMapsForRoom(room) {
+  if (!_venueMap) return [];
+  const ids = _venueMap.rooms?.[room] ?? [];
+  return ids.map(id => _venueMap.maps?.[id]).filter(Boolean);
+}
+
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -39,6 +48,18 @@ function buildModal(ev, going) {
        </div>`
     : '';
 
+  const roomMaps = getMapsForRoom(ev.room);
+  const mapsHtml = roomMaps.length
+    ? `<div class="modal-maps">
+        <div class="modal-maps-title">Maps</div>
+        <div class="modal-maps-links">
+          ${roomMaps.map(m =>
+            `<a class="map-link" href="${escapeHtml(m.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(m.label)}</a>`
+          ).join('')}
+        </div>
+       </div>`
+    : '';
+
   el.innerHTML = `
     <div class="modal-header">
       <div class="modal-title-row">
@@ -57,6 +78,7 @@ function buildModal(ev, going) {
     <div class="modal-body">
       <p class="modal-description">${escapeHtml(ev.description)}</p>
     </div>
+    ${mapsHtml}
     <div class="modal-footer">
       <button class="going-btn ${going ? 'going-active' : ''}" data-id="${ev.id}">
         ${going ? '♥ Going' : '♡ Going To'}

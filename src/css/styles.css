@@ -660,6 +660,56 @@ button {
   white-space: pre-wrap;
 }
 
+.modal-maps {
+  padding: 10px 20px 12px;
+  border-top: 1px solid var(--border);
+}
+
+.modal-maps-title {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.modal-maps-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.map-link::after {
+  content: '↗';
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.map-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.map-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
 .modal-footer {
   padding: 12px 20px 20px;
   flex-shrink: 0;

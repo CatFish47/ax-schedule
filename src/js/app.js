@@ -1,10 +1,11 @@
 import { getState, setState, subscribe } from './store.js';
-import { getEvents, getEventsForDay, applyFilters } from './data.js';
+import { getEvents, getEventsForDay, applyFilters, getVenueMap } from './data.js';
 import { render as renderGrid, updateGoingState as updateGridGoing } from './grid.js';
 import { render as renderList, updateGoingState as updateListGoing } from './list.js';
 import { render as renderMySchedule } from './my-schedule.js';
 import { render as renderCompare } from './compare.js';
 import { openShareModal, getCompareSet } from './share.js';
+import { initVenueMap } from './modal.js';
 
 const DAYS = [
   { day: 1, label: 'Jul 2' },
@@ -45,7 +46,9 @@ function addTablistKeyNav(container, itemSelector) {
 async function init() {
   let allEvents;
   try {
-    allEvents = await getEvents();
+    const [events, venueMap] = await Promise.all([getEvents(), getVenueMap()]);
+    allEvents = events;
+    initVenueMap(venueMap);
   } catch (err) {
     document.getElementById('app-main').innerHTML =
       `<div class="error-state">Failed to load schedule data. Please refresh.</div>`;

@@ -8,6 +8,18 @@ export async function getEvents() {
   return cache;
 }
 
+let venueMapCache = null;
+
+export async function getVenueMap() {
+  if (venueMapCache) return venueMapCache;
+  try {
+    const res = await fetch('./venue_map.json');
+    if (!res.ok) return null;
+    venueMapCache = await res.json();
+  } catch { venueMapCache = null; }
+  return venueMapCache;
+}
+
 export function getEventsForDay(events, day) {
   return events.filter(e => e.day === day);
 }
