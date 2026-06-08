@@ -1,4 +1,4 @@
-import { getEventsForDay, getActiveRoomGroups, computeOverlaps, ROOM_ABBREV, formatTime } from './data.js';
+import { getActiveRoomGroups, computeOverlaps, ROOM_ABBREV, formatTime } from './data.js';
 import { GoingTo } from './storage.js';
 import { openModal } from './modal.js';
 
@@ -6,10 +6,17 @@ const PX_PER_MIN = 1.5;
 const ROOM_COL_W = 120;  // must match --room-col-w in CSS
 const MIN_EVENT_HEIGHT = 24;
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function getDayBounds(events) {
   const starts = events.map(e => e.start_int);
   const rawMin = Math.min(...starts);
-  // Round down to nearest 30
   const dayStart = Math.floor(rawMin / 30) * 30;
   const ends = events.map(e => e.end_int);
   const rawMax = Math.max(...ends);
@@ -36,9 +43,21 @@ function buildTimeAxis(dayStart, dayEnd) {
   return col;
 }
 
-function buildEventCard(ev, slot, totalSlots, dayStart, going) {
+function buildEventCard(ev, slot, totalSlots, dayStart, goingSet, compareSet) {
+  const mine = goingSet.has(ev.id);
+  const theirs = compareSet?.has(ev.id) ?? false;
+
+  let stateClass = '';
+  if (compareSet) {
+    if (mine && theirs) stateClass = ' event-card--shared';
+    else if (mine)      stateClass = ' event-card--going';
+    else if (theirs)    stateClass = ' event-card--compare';
+  } else if (mine) {
+    stateClass = ' event-card--going';
+  }
+
   const card = document.createElement('div');
-  card.className = 'event-card' + (going ? ' event-card--going' : '');
+  card.className = 'event-card' + stateClass;
   card.setAttribute('tabindex', '0');
   card.setAttribute('role', 'button');
   card.setAttribute('aria-label', `${ev.title}, ${ev.start_time} to ${ev.end_time}`);
@@ -74,7 +93,7 @@ function buildEventCard(ev, slot, totalSlots, dayStart, going) {
   return card;
 }
 
-function buildRoomColumn(room, events, dayStart, dayEnd, goingSet) {
+function buildRoomColumn(room, events, dayStart, dayEnd, goingSet, compareSet) {
   const col = document.createElement('div');
   col.className = 'room-col';
   col.dataset.room = room;
@@ -87,7 +106,7 @@ function buildRoomColumn(room, events, dayStart, dayEnd, goingSet) {
 
   for (const ev of events) {
     const { slot, totalSlots } = slotMap[ev.id] || { slot: 0, totalSlots: 1 };
-    const card = buildEventCard(ev, slot, totalSlots, dayStart, goingSet.has(ev.id));
+    const card = buildEventCard(ev, slot, totalSlots, dayStart, goingSet, compareSet);
     inner.appendChild(card);
   }
 
@@ -95,57 +114,32 @@ function buildRoomColumn(room, events, dayStart, dayEnd, goingSet) {
   return col;
 }
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-let _container = null;
-let _unsubGoingTo = null;
-let _currentEvents = null;
-let _currentDay = null;
-
-function rerender() {
-  if (!_container || !_currentEvents || !_currentDay) return;
-  render(_container, _currentEvents, _currentDay);
-}
-
-export function render(container, allEvents, day) {
-  _container = container;
-  _currentEvents = allEvents;
-  _currentDay = day;
-
-  const events = getEventsForDay(allEvents, day);
+// events: already filtered for the correct day + user filters
+export function render(container, events, compareSet = null) {
   const goingSet = GoingTo.getAll();
 
   if (events.length === 0) {
-    container.innerHTML = '<div class="empty-state">No events scheduled for this day.</div>';
+    container.innerHTML = '<div class="empty-state">No events match the current filters.</div>';
     return;
   }
 
   const { dayStart, dayEnd } = getDayBounds(events);
   const roomGroups = getActiveRoomGroups(events);
 
-  // Map room → events
   const byRoom = {};
   for (const ev of events) {
     if (!byRoom[ev.room]) byRoom[ev.room] = [];
     byRoom[ev.room].push(ev);
   }
 
-  // Build the grid
   container.innerHTML = '';
   const grid = document.createElement('div');
   grid.className = 'timeline-grid';
 
-  // ── Header rows (wrapped in a single sticky container) ──
+  // ── Sticky header wrapper ──
   const headerWrap = document.createElement('div');
   headerWrap.className = 'grid-header-wrap';
 
-  // Row 1: group labels
   const headerArea = document.createElement('div');
   headerArea.className = 'grid-header';
 
@@ -156,13 +150,11 @@ export function render(container, allEvents, day) {
   for (const group of roomGroups) {
     const groupHeader = document.createElement('div');
     groupHeader.className = 'group-header';
-    // Explicit pixel width so flex knows how wide to make it
     groupHeader.style.width = `${group.rooms.length * ROOM_COL_W}px`;
     groupHeader.textContent = group.label;
     headerArea.appendChild(groupHeader);
   }
 
-  // Row 2: individual room names
   const roomHeaderRow = document.createElement('div');
   roomHeaderRow.className = 'room-header-row';
 
@@ -184,7 +176,7 @@ export function render(container, allEvents, day) {
   headerWrap.appendChild(roomHeaderRow);
   grid.appendChild(headerWrap);
 
-  // ── Body (time axis + room columns) ──
+  // ── Body ──
   const body = document.createElement('div');
   body.className = 'grid-body';
 
@@ -197,7 +189,7 @@ export function render(container, allEvents, day) {
 
     for (const room of group.rooms) {
       const roomEvents = byRoom[room] || [];
-      const col = buildRoomColumn(room, roomEvents, dayStart, dayEnd, goingSet);
+      const col = buildRoomColumn(room, roomEvents, dayStart, dayEnd, goingSet, compareSet);
       groupCol.appendChild(col);
     }
 
@@ -208,17 +200,13 @@ export function render(container, allEvents, day) {
   container.appendChild(grid);
 }
 
-export function updateGoingState(container) {
+export function updateGoingState(container, compareSet = null) {
   const goingSet = GoingTo.getAll();
   container.querySelectorAll('.event-card').forEach(card => {
-    const going = goingSet.has(card.dataset.id);
-    card.classList.toggle('event-card--going', going);
+    const mine = goingSet.has(card.dataset.id);
+    const theirs = compareSet?.has(card.dataset.id) ?? false;
+    card.classList.toggle('event-card--going',   compareSet ? (mine && !theirs) : mine);
+    card.classList.toggle('event-card--compare', !!compareSet && theirs && !mine);
+    card.classList.toggle('event-card--shared',  !!compareSet && mine && theirs);
   });
-}
-
-export function destroy() {
-  _unsubGoingTo?.();
-  _container = null;
-  _currentEvents = null;
-  _currentDay = null;
 }

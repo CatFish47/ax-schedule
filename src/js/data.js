@@ -120,6 +120,18 @@ export function computeOverlaps(roomEvents) {
   return slotMap;
 }
 
+export function applyFilters(events, filters) {
+  let result = events;
+  if (!filters.show18Plus) {
+    result = result.filter(e => !e.is_18_plus);
+  }
+  if (filters.timeRange) {
+    const { start, end } = filters.timeRange;
+    result = result.filter(e => e.start_int >= start && e.end_int <= end);
+  }
+  return result;
+}
+
 export function formatTime(minutes) {
   const m = minutes % 1440;  // unwrap post-midnight
   const h = Math.floor(m / 60);
