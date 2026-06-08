@@ -1,4 +1,5 @@
 import { GoingTo } from './storage.js';
+import { exportToCalendar } from './my-schedule.js';
 
 function escapeHtml(str) {
   return String(str)
@@ -31,7 +32,7 @@ export function getCompareSet() {
 let backdrop = null;
 let triggerEl = null;
 
-export function openShareModal(fromEl = null) {
+export function openShareModal(fromEl = null, allEvents = null) {
   closeShareModal();
   triggerEl = fromEl;
 
@@ -39,7 +40,7 @@ export function openShareModal(fromEl = null) {
   backdrop.className = 'modal-backdrop';
   backdrop.addEventListener('click', e => { if (e.target === backdrop) closeShareModal(); });
 
-  const modal = buildModal();
+  const modal = buildModal(allEvents);
   backdrop.appendChild(modal);
   document.body.appendChild(backdrop);
   document.body.style.overflow = 'hidden';
@@ -61,7 +62,7 @@ export function closeShareModal() {
   triggerEl = null;
 }
 
-function buildModal() {
+function buildModal(allEvents) {
   const el = document.createElement('div');
   el.className = 'modal';
   el.setAttribute('role', 'dialog');
@@ -101,6 +102,14 @@ function buildModal() {
         </div>
         <p class="share-error" hidden></p>
       </section>
+
+      <section class="share-section">
+        <h3 class="share-section-title">Export to calendar</h3>
+        <p class="share-hint">Download your "Going To" events as a .ics file for Apple Calendar, Google Calendar, or Outlook.</p>
+        <div class="share-import-actions">
+          <button class="share-btn-secondary" data-action="export-ics"${!myIds.size ? ' disabled' : ''}>↓ Download .ics</button>
+        </div>
+      </section>
     </div>
   `;
 
@@ -114,6 +123,14 @@ function buildModal() {
         copyBtn.classList.add('copied');
         setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('copied'); }, 2000);
       }).catch(() => el.querySelector('.share-code')?.select());
+    });
+  }
+
+  const exportIcsBtn = el.querySelector('[data-action="export-ics"]');
+  if (exportIcsBtn) {
+    exportIcsBtn.addEventListener('click', () => {
+      exportToCalendar(allEvents ?? []);
+      closeShareModal();
     });
   }
 

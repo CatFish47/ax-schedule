@@ -56,10 +56,11 @@ async function init() {
     return;
   }
 
-  const daySelector = document.getElementById('day-selector');
-  const navTabs     = document.getElementById('nav-tabs');
-  const toolbar     = document.getElementById('schedule-toolbar');
-  const mainContent = document.getElementById('app-main');
+  const daySelector         = document.getElementById('day-selector');
+  const navTabs             = document.getElementById('nav-tabs');
+  const toolbar             = document.getElementById('schedule-toolbar');
+  const myScheduleToolbar   = document.getElementById('my-schedule-toolbar');
+  const mainContent         = document.getElementById('app-main');
 
   let compareSet = getCompareSet();
 
@@ -76,7 +77,7 @@ async function init() {
     daySelector.appendChild(btn);
   }
 
-  // ── Nav tabs + Export/Import button ────────────────────────────
+  // ── Nav tabs + right-side action buttons ──────────────────────
   const views = [
     { view: 'schedule',    label: 'Schedule' },
     { view: 'my-schedule', label: 'My Schedule' },
@@ -94,11 +95,19 @@ async function init() {
     navTabs.appendChild(btn);
   }
 
+  const feedbackLink = document.createElement('a');
+  feedbackLink.className = 'nav-feedback-link';
+  feedbackLink.href = 'https://forms.gle/B8PqCum5bTtdDCNK7';
+  feedbackLink.target = '_blank';
+  feedbackLink.rel = 'noopener noreferrer';
+  feedbackLink.textContent = 'Feedback';
+  navTabs.appendChild(feedbackLink);
+
   const exportImportBtn = document.createElement('button');
   exportImportBtn.className = 'nav-share-btn';
   exportImportBtn.textContent = 'Export / Import';
   exportImportBtn.setAttribute('aria-label', 'Export or import schedule');
-  exportImportBtn.addEventListener('click', () => openShareModal(exportImportBtn));
+  exportImportBtn.addEventListener('click', () => openShareModal(exportImportBtn, allEvents));
   navTabs.appendChild(exportImportBtn);
 
   // ── Schedule toolbar ────────────────────────────────────────────
@@ -189,6 +198,30 @@ async function init() {
   toolbar.appendChild(sep);
   toolbar.appendChild(filtersEl);
 
+  // ── My Schedule toolbar ────────────────────────────────────────
+  const myGridBtn = document.createElement('button');
+  myGridBtn.className = 'mode-btn';
+  myGridBtn.setAttribute('aria-pressed', 'false');
+  myGridBtn.innerHTML = '▦ Grid';
+
+  const myListBtn = document.createElement('button');
+  myListBtn.className = 'mode-btn mode-btn--active';
+  myListBtn.setAttribute('aria-pressed', 'true');
+  myListBtn.innerHTML = '≡ List';
+
+  myGridBtn.addEventListener('click', () => setState({ myScheduleMode: 'grid' }));
+  myListBtn.addEventListener('click', () => setState({ myScheduleMode: 'list' }));
+
+  const myModeToggle = document.createElement('div');
+  myModeToggle.className = 'mode-toggle';
+  myModeToggle.setAttribute('role', 'group');
+  myModeToggle.setAttribute('aria-label', 'My Schedule view mode');
+  myModeToggle.appendChild(myGridBtn);
+  myModeToggle.appendChild(myListBtn);
+
+  myScheduleToolbar.innerHTML = '';
+  myScheduleToolbar.appendChild(myModeToggle);
+
   // ── Keyboard nav ───────────────────────────────────────────────
   addTablistKeyNav(daySelector, '.day-pill');
   addTablistKeyNav(navTabs, '.nav-tab');
@@ -229,16 +262,25 @@ async function init() {
       btn.tabIndex = active ? 0 : -1;
     });
 
-    const isSchedule = state.view === 'schedule';
-    const needsDays  = state.view === 'schedule' || state.view === 'compare';
-    daySelector.style.display = needsDays   ? '' : 'none';
-    toolbar.style.display     = isSchedule  ? '' : 'none';
+    const isSchedule   = state.view === 'schedule';
+    const isMySchedule = state.view === 'my-schedule';
+    const needsDays    = isSchedule || state.view === 'compare' ||
+                         (isMySchedule && state.myScheduleMode === 'grid');
+    daySelector.style.display       = needsDays   ? '' : 'none';
+    toolbar.style.display           = isSchedule  ? '' : 'none';
+    myScheduleToolbar.style.display = isMySchedule ? '' : 'none';
 
-    // Mode toggle
+    // Schedule mode toggle
     gridBtn.classList.toggle('mode-btn--active', state.scheduleMode === 'grid');
     listBtn.classList.toggle('mode-btn--active', state.scheduleMode === 'list');
     gridBtn.setAttribute('aria-pressed', state.scheduleMode === 'grid' ? 'true' : 'false');
     listBtn.setAttribute('aria-pressed', state.scheduleMode === 'list' ? 'true' : 'false');
+
+    // My Schedule mode toggle
+    myGridBtn.classList.toggle('mode-btn--active', state.myScheduleMode === 'grid');
+    myListBtn.classList.toggle('mode-btn--active', state.myScheduleMode === 'list');
+    myGridBtn.setAttribute('aria-pressed', state.myScheduleMode === 'grid' ? 'true' : 'false');
+    myListBtn.setAttribute('aria-pressed', state.myScheduleMode === 'list' ? 'true' : 'false');
 
     // 18+ toggle
     adultToggle.classList.toggle('filter-toggle--active', state.filters.show18Plus);
@@ -248,7 +290,7 @@ async function init() {
     if (state.view === 'schedule') {
       renderSchedule(state);
     } else if (state.view === 'my-schedule') {
-      renderMySchedule(mainContent, allEvents);
+      renderMySchedule(mainContent, allEvents, state.day, state.myScheduleMode);
     } else {
       renderCompare(mainContent, allEvents, state.day, compareSet);
     }
@@ -261,7 +303,7 @@ async function init() {
       if (state.scheduleMode === 'grid') updateGridGoing(mainContent);
       else                               updateListGoing(mainContent);
     } else if (state.view === 'my-schedule') {
-      renderMySchedule(mainContent, allEvents);
+      renderMySchedule(mainContent, allEvents, state.day, state.myScheduleMode);
     } else {
       renderCompare(mainContent, allEvents, state.day, compareSet);
     }
