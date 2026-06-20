@@ -87,7 +87,7 @@ function buildModal(allEvents) {
             <textarea class="share-code" readonly spellcheck="false" rows="3">${escapeHtml(exportCode)}</textarea>
             <button class="share-copy-btn">Copy</button>
           </div>
-          <p class="share-hint">Share this code with a friend. To compare schedules, go to the <strong>Compare</strong> tab.</p>
+          <p class="share-hint">Copy code to export schedule to another device.</p>
         ` : `
           <p class="share-hint">Mark some events as "Going To" to generate a code.</p>
         `}
