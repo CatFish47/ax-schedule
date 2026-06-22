@@ -17,11 +17,11 @@
   --scrollbar:       #2c2c50;
 
   /* Typography */
-  --text-xs:   11px;
-  --text-sm:   13px;
-  --text-base: 15px;
-  --text-lg:   18px;
-  --text-xl:   22px;
+  --text-xs:   0.6875em;
+  --text-sm:   0.8125em;
+  --text-base: 0.9375em;
+  --text-lg:   1.125em;
+  --text-xl:   1.375em;
 
   /* Grid */
   --px-per-min:    1.5px;
@@ -75,8 +75,8 @@ button {
 /* ── App Header ── */
 #app-header {
   display: flex;
-  flex-wrap: wrap;        /* day selector wraps to second row on mobile */
-  align-items: stretch;
+  align-items: center;
+  height: var(--header-h);
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
@@ -84,7 +84,6 @@ button {
 }
 
 .app-name {
-  height: var(--header-h);
   padding: 0 16px;
   display: flex;
   align-items: center;
@@ -92,7 +91,7 @@ button {
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.5px;
-  flex: 1 0 auto;         /* take remaining width so day-selector wraps */
+  flex: 1 0 auto;
 }
 
 .app-name span {
@@ -133,17 +132,17 @@ button {
   color: var(--text);
 }
 
-/* ── Day Selector (lives inside #app-header) ── */
+/* ── Day Selector (row below nav tabs) ── */
 #day-selector {
-  /* Mobile: full-width second row inside header */
-  width: 100%;
   display: flex;
   gap: 8px;
   padding: 6px 16px 8px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   align-items: center;
-  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
 }
 
 #day-selector::-webkit-scrollbar { height: 0; }
@@ -380,7 +379,7 @@ button {
 }
 
 .card-time {
-  font-size: 10px;
+  font-size: 0.667em;
   color: var(--text-muted);
   margin-top: 2px;
   white-space: nowrap;
@@ -390,7 +389,7 @@ button {
 
 /* ─── Badges ─────────────────────────────────────────────────────── */
 .badge {
-  font-size: 10px;
+  font-size: 0.667em;
   font-weight: 700;
   padding: 1px 4px;
   border-radius: 3px;
@@ -399,8 +398,8 @@ button {
   color: #fff;
 }
 
-.badge-18 { background: var(--badge-18); }
-.badge-clear { background: var(--badge-clear); }
+.badge-18 { background: var(--badge-18); font-size: 0.867em; }
+.badge-clear { background: var(--badge-clear); font-size: 0.867em; }
 .badge-custom { background: var(--accent); }
 
 /* ─── My Schedule ────────────────────────────────────────────────── */
@@ -474,7 +473,7 @@ button {
 
 .my-event-dot {
   color: var(--going);
-  font-size: 10px;
+  font-size: 0.667em;
   margin-top: 4px;
   flex-shrink: 0;
 }
@@ -627,7 +626,7 @@ button {
   border-radius: 50%;
   background: var(--surface-raised);
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: 0.933em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -735,7 +734,7 @@ button {
 
 .map-link::after {
   content: '↗';
-  font-size: 10px;
+  font-size: 0.82em;
   color: var(--text-muted);
 }
 
@@ -818,7 +817,7 @@ button {
 }
 
 .empty-icon {
-  font-size: 48px;
+  font-size: 3.2em;
 }
 
 .empty-state p {
@@ -840,23 +839,12 @@ button {
 
 /* ─── Desktop Layout Overrides ───────────────────────────────────── */
 @media (min-width: 768px) {
-  /* Header: single row with day-selector on the right */
-  #app-header {
-    flex-wrap: nowrap;
-  }
-
   .app-name {
     padding: 0 24px;
-    flex: 0 0 auto;
   }
 
   #day-selector {
-    width: auto;
-    flex: 1;
-    justify-content: flex-end;
-    padding: 0 24px 0 16px;
-    border-top: none;
-    height: var(--header-h);
+    padding: 6px 24px 8px;
   }
 
   .my-schedule-list {
@@ -1150,7 +1138,7 @@ button {
 }
 
 .list-indicator {
-  font-size: 11px;
+  font-size: 0.733em;
   display: inline-block;
   text-align: center;
 }
@@ -1259,7 +1247,7 @@ button {
   border-radius: 6px;
   color: var(--text);
   font-family: 'Menlo', 'Consolas', monospace;
-  font-size: 11px;
+  font-size: 0.733em;
   padding: 8px 10px;
   resize: none;
   line-height: 1.5;
