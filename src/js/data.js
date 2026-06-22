@@ -1,10 +1,17 @@
+import { CustomEvents } from './storage.js';
+
 let cache = null;
+
+export function invalidateCache() {
+  cache = null;
+}
 
 export async function getEvents() {
   if (cache) return cache;
   const res = await fetch('./events.json');
   if (!res.ok) throw new Error(`Failed to load events.json: ${res.status}`);
-  cache = await res.json();
+  const fetched = await res.json();
+  cache = [...fetched, ...CustomEvents.getAll()];
   return cache;
 }
 

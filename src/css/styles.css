@@ -401,6 +401,7 @@ button {
 
 .badge-18 { background: var(--badge-18); }
 .badge-clear { background: var(--badge-clear); }
+.badge-custom { background: var(--accent); }
 
 /* ─── My Schedule ────────────────────────────────────────────────── */
 .my-schedule-header {
@@ -1502,4 +1503,146 @@ button {
 
 :focus:not(:focus-visible) {
   outline: none;
+}
+
+/* ─── Add Event Button ───────────────────────────────────────────── */
+.add-event-btn {
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.add-event-btn:hover {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.add-event-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ─── Custom Event Form ──────────────────────────────────────────── */
+.custom-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-label {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.form-required {
+  color: var(--going);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: var(--text-sm);
+  transition: border-color 0.15s;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.form-error {
+  font-size: var(--text-sm);
+  color: var(--going);
+  padding: 6px 10px;
+  background: rgba(232, 76, 107, 0.1);
+  border-radius: 6px;
+  border-left: 3px solid var(--going);
+}
+
+.custom-form-footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.custom-form-footer .form-btn:first-child:not(:last-child) {
+  margin-right: auto;
+}
+
+.form-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  cursor: pointer;
+}
+
+.form-btn:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.form-btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.form-btn--primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--text-on-accent);
+}
+
+.form-btn--danger {
+  color: var(--going);
+  border-color: var(--going);
+  background: transparent;
+}
+
+.form-btn--danger:hover {
+  background: var(--going);
+  color: var(--text-on-accent);
+}
+
+.form-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }

@@ -1,5 +1,6 @@
-import { GoingTo } from './storage.js';
+import { GoingTo, CustomEvents } from './storage.js';
 import { setState } from './store.js';
+import { openCustomEventForm } from './custom-event-form.js';
 
 let _venueMap = null;
 export function initVenueMap(data) { _venueMap = data; }
@@ -33,6 +34,7 @@ function buildModal(ev, going) {
   el.setAttribute('aria-label', ev.title);
 
   const badges = [];
+  if (ev.custom)     badges.push('<span class="badge badge-custom">Custom</span>');
   if (ev.is_18_plus) badges.push('<span class="badge badge-18">18+</span>');
 
   const clearedBefore = ev.cleared_before
@@ -79,15 +81,34 @@ function buildModal(ev, going) {
       <p class="modal-description">${escapeHtml(ev.description)}</p>
     </div>
     ${mapsHtml}
+    ${ev.custom ? `
+    <div class="modal-footer custom-form-footer">
+      <button class="form-btn form-btn--danger" data-action="delete">Delete</button>
+      <button class="form-btn form-btn--primary" data-action="edit">Edit</button>
+    </div>` : `
     <div class="modal-footer">
       <button class="going-btn ${going ? 'going-active' : ''}" data-id="${ev.id}">
         ${going ? '♥ Going' : '♡ Going To'}
       </button>
-    </div>
+    </div>`}
   `;
 
   // Close button
   el.querySelector('.modal-close').addEventListener('click', closeModal);
+
+  // Custom event Edit / Delete
+  if (ev.custom) {
+    el.querySelector('[data-action="edit"]').addEventListener('click', () => {
+      closeModal();
+      openCustomEventForm(ev);
+    });
+    el.querySelector('[data-action="delete"]').addEventListener('click', () => {
+      CustomEvents.remove(ev.id);
+      document.dispatchEvent(new CustomEvent('customevent:change'));
+      closeModal();
+    });
+    return el;
+  }
 
   // Going To toggle
   const goingBtn = el.querySelector('.going-btn');

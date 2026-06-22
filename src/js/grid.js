@@ -49,6 +49,7 @@ function buildEventCard(ev, slot, totalSlots, dayStart, going) {
   card.style.cssText = `top:${top}px;height:${height}px;width:calc(${wPct}% - 2px);left:calc(${lPct}% + 1px);`;
 
   const badges = [];
+  if (ev.custom)         badges.push('<span class="badge badge-custom">✎</span>');
   if (ev.is_18_plus)     badges.push('<span class="badge badge-18">18+</span>');
   if (ev.cleared_before) badges.push('<span class="badge badge-clear" title="Room cleared before">↑</span>');
   if (ev.cleared_after)  badges.push('<span class="badge badge-clear" title="Room cleared after">↓</span>');

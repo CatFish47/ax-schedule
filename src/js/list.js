@@ -18,6 +18,7 @@ function buildCard(ev, going) {
   card.dataset.id = ev.id;
 
   const badges = [];
+  if (ev.custom)         badges.push('<span class="badge badge-custom">Custom</span>');
   if (ev.is_18_plus)     badges.push('<span class="badge badge-18">18+</span>');
   if (ev.cleared_before) badges.push('<span class="badge badge-clear" title="Room cleared before">↑ cleared</span>');
   if (ev.cleared_after)  badges.push('<span class="badge badge-clear" title="Room cleared after">↓ cleared</span>');

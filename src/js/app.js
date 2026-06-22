@@ -1,5 +1,6 @@
 import { getState, setState, subscribe } from './store.js';
-import { getEvents, getEventsForDay, applyFilters, getVenueMap } from './data.js';
+import { getEvents, getEventsForDay, applyFilters, getVenueMap, invalidateCache } from './data.js';
+import { openCustomEventForm } from './custom-event-form.js';
 import { render as renderGrid, updateGoingState as updateGridGoing } from './grid.js';
 import { render as renderList, updateGoingState as updateListGoing } from './list.js';
 import { render as renderMySchedule } from './my-schedule.js';
@@ -219,8 +220,19 @@ async function init() {
   myModeToggle.appendChild(myGridBtn);
   myModeToggle.appendChild(myListBtn);
 
+  const myToolbarSep = document.createElement('div');
+  myToolbarSep.className = 'toolbar-sep';
+
+  const addEventBtn = document.createElement('button');
+  addEventBtn.className = 'add-event-btn';
+  addEventBtn.textContent = '+ Add Event';
+  addEventBtn.setAttribute('aria-label', 'Add custom event');
+  addEventBtn.addEventListener('click', () => openCustomEventForm());
+
   myScheduleToolbar.innerHTML = '';
   myScheduleToolbar.appendChild(myModeToggle);
+  myScheduleToolbar.appendChild(myToolbarSep);
+  myScheduleToolbar.appendChild(addEventBtn);
 
   // ── Keyboard nav ───────────────────────────────────────────────
   addTablistKeyNav(daySelector, '.day-pill');
@@ -302,6 +314,20 @@ async function init() {
     if (state.view === 'schedule') {
       if (state.scheduleMode === 'grid') updateGridGoing(mainContent);
       else                               updateListGoing(mainContent);
+    } else if (state.view === 'my-schedule') {
+      renderMySchedule(mainContent, allEvents, state.day, state.myScheduleMode);
+    } else {
+      renderCompare(mainContent, allEvents, state.day, compareSet);
+    }
+  });
+
+  // Custom event changes — refresh merged event list then re-render
+  document.addEventListener('customevent:change', async () => {
+    invalidateCache();
+    allEvents = await getEvents();
+    const state = getState();
+    if (state.view === 'schedule') {
+      renderSchedule(state);
     } else if (state.view === 'my-schedule') {
       renderMySchedule(mainContent, allEvents, state.day, state.myScheduleMode);
     } else {
