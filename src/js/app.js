@@ -96,20 +96,62 @@ async function init() {
     navTabs.appendChild(btn);
   }
 
-  const feedbackLink = document.createElement('a');
-  feedbackLink.className = 'nav-feedback-link';
-  feedbackLink.href = 'https://forms.gle/B8PqCum5bTtdDCNK7';
-  feedbackLink.target = '_blank';
-  feedbackLink.rel = 'noopener noreferrer';
-  feedbackLink.textContent = 'Feedback';
-  navTabs.appendChild(feedbackLink);
+  const overflowWrap = document.createElement('div');
+  overflowWrap.className = 'nav-overflow-wrap';
 
-  const exportImportBtn = document.createElement('button');
-  exportImportBtn.className = 'nav-share-btn';
-  exportImportBtn.textContent = 'Export / Import';
-  exportImportBtn.setAttribute('aria-label', 'Export or import schedule');
-  exportImportBtn.addEventListener('click', () => openShareModal(exportImportBtn, allEvents));
-  navTabs.appendChild(exportImportBtn);
+  const overflowBtn = document.createElement('button');
+  overflowBtn.className = 'nav-overflow-btn';
+  overflowBtn.setAttribute('aria-label', 'More options');
+  overflowBtn.setAttribute('aria-expanded', 'false');
+  overflowBtn.textContent = '⋯';
+
+  const overflowMenu = document.createElement('div');
+  overflowMenu.className = 'nav-overflow-menu';
+  overflowMenu.hidden = true;
+
+  const menuFeedback = document.createElement('a');
+  menuFeedback.className = 'nav-overflow-item';
+  menuFeedback.href = 'https://forms.gle/B8PqCum5bTtdDCNK7';
+  menuFeedback.target = '_blank';
+  menuFeedback.rel = 'noopener noreferrer';
+  menuFeedback.textContent = 'Feedback ↗';
+  overflowMenu.appendChild(menuFeedback);
+
+  const menuExport = document.createElement('button');
+  menuExport.className = 'nav-overflow-item';
+  menuExport.textContent = 'Export / Import';
+  menuExport.addEventListener('click', () => {
+    overflowMenu.hidden = true;
+    overflowBtn.setAttribute('aria-expanded', 'false');
+    openShareModal(overflowBtn, allEvents);
+  });
+  overflowMenu.appendChild(menuExport);
+
+  overflowBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = !overflowMenu.hidden;
+    overflowMenu.hidden = open;
+    overflowBtn.setAttribute('aria-expanded', String(!open));
+  });
+
+  document.addEventListener('click', () => {
+    if (!overflowMenu.hidden) {
+      overflowMenu.hidden = true;
+      overflowBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !overflowMenu.hidden) {
+      overflowMenu.hidden = true;
+      overflowBtn.setAttribute('aria-expanded', 'false');
+      overflowBtn.focus();
+    }
+  });
+
+  overflowWrap.appendChild(overflowBtn);
+  overflowWrap.appendChild(overflowMenu);
+  navTabs.appendChild(overflowWrap);
 
   // ── Schedule toolbar ────────────────────────────────────────────
   const modeToggle = document.createElement('div');
