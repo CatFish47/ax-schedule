@@ -16,12 +16,15 @@
   --badge-clear:     #3dbfa0;
   --scrollbar:       #2c2c50;
 
-  /* Typography */
-  --text-xs:   0.6875em;
-  --text-sm:   0.8125em;
-  --text-base: 0.9375em;
-  --text-lg:   1.125em;
-  --text-xl:   1.375em;
+  /* Scale — multiply to grow/shrink all text uniformly */
+  --scale: 1;
+
+  /* Typography — ratios relative to 15px body */
+  --text-xs:   0.733em;
+  --text-sm:   0.867em;
+  --text-base: 1em;
+  --text-lg:   1.2em;
+  --text-xl:   1.467em;
 
   /* Grid */
   --px-per-min:    1.5px;
@@ -46,9 +49,12 @@ html, body {
   background: var(--bg);
   color: var(--text);
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  font-size: var(--text-base);
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: calc(0.9375em * var(--scale)); /* 15px at scale 1 */
 }
 
 button {
@@ -734,7 +740,7 @@ button {
 
 .map-link::after {
   content: '↗';
-  font-size: 0.82em;
+  font-size: 0.769em;
   color: var(--text-muted);
 }
 
