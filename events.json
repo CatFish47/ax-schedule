@@ -180,6 +180,21 @@
     "is_18_plus": false
   },
   {
+    "id": "8b453f68",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "11:00 AM",
+    "end_time": "11:45 AM",
+    "start_int": 660,
+    "end_int": 705,
+    "room": "AX Crossing",
+    "title": "Umi Kyoku",
+    "description": "Umi Kyoku is a crazy whale shark VTuber, voice actor, and singer, here to help you find your peace within the current of the ocean. She's enjoyed swimming all over the world to perform at different conventions, such as DoKomi in Germany and AniManGaki in Malaysia. Despite being a virtual entertainer, that does not stop her from performing remotely across the globe to share her music and storytelling.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "8ec3b5b8",
     "date": "July 2, 2026",
     "day": 1,
@@ -315,7 +330,7 @@
     "is_18_plus": false
   },
   {
-    "id": "8deafee4",
+    "id": "bdc72eb1",
     "date": "July 2, 2026",
     "day": 1,
     "start_time": "12:00 PM",
@@ -323,7 +338,7 @@
     "start_int": 720,
     "end_int": 770,
     "room": "409AB",
-    "title": "Min-Max Mayhem: The Overpowered Olympics",
+    "title": "Min-Max Mayhem: The Overpowered Olympics - Presented by J-Novel Club",
     "description": "Who's truly the strongest? Join J-Novel Club for a high-energy showdown ranking overpowered light novel & manga heroes and villains! Debate mystery matchups before the characters are revealed and vote on who wins. Bold claims, fierce arguments, and ultimate bragging rights—who reigns supreme?",
     "cleared_before": false,
     "cleared_after": false,
@@ -400,6 +415,21 @@
     "room": "Lounge 21",
     "title": "FirahFabe",
     "description": "FirahFabe is a Filipino-American VGM musician & composer. From the island of Oahu, Hawai'i now relocated to the Bay Area. As a multi-instrumentalist, he mains the Laud, a mandolin-like instrument from the Filipino Rondalla traditional ensemble family. He arranges and plays video game and anime music in a mix of acoustic traditional folk rock fusion style.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "e2f20b24",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "12:15 PM",
+    "end_time": "12:45 PM",
+    "start_int": 735,
+    "end_int": 765,
+    "room": "AX Crossing",
+    "title": "Drew Jackson",
+    "description": "Drew Jackson, a nerdcore rap artist and content creator",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -1155,6 +1185,21 @@
     "is_18_plus": false
   },
   {
+    "id": "0dca0b97",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "6:15 PM",
+    "end_time": "7:15 PM",
+    "start_int": 1095,
+    "end_int": 1155,
+    "room": "Lounge 21",
+    "title": "NecroBarkley",
+    "description": "NecroBarkley is a DJ/VJ from California that's bringing the underground anime EDM scene to the dance floor. Having performed around the world in places like Tokyo, San Francisco, and New York City, his new mashups and creative visuals are always ready to get the audience partying the night away.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "6bb56f61",
     "date": "July 2, 2026",
     "day": 1,
@@ -1164,13 +1209,13 @@
     "end_int": 1290,
     "room": "The Novo",
     "title": "AMV Finals",
-    "description": "Celebrate the best in anime and music fusion at the Anime Expo 2026 Anime Music Video (AMV) Competition Awards! Join us as we unveil the winners across various categories, showcasing exceptional artistry, storytelling, and technical prowess.",
+    "description": "Experience a showcase of fan-created music videos that blend anime with carefully selected music to create unique and compelling visual stories. Celebrate the creativity of the anime community as finalists compete for top honors in a variety of AMV categories.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
   },
   {
-    "id": "c19e7a95",
+    "id": "1d76e8cc",
     "date": "July 2, 2026",
     "day": 1,
     "start_time": "6:45 PM",
@@ -1178,8 +1223,8 @@
     "start_int": 1125,
     "end_int": 1175,
     "room": "403AB",
-    "title": "The World Is Dancing Ep 1 Encore & Ep 2 World Premiere",
-    "description": "Why do people dance? Join us for Episode 1 and the World Premiere of Episode 2 of this sweeping historical drama that will make you laugh, cry and maybe even dance. ***This room will NOT be cleared prior to this panel. This room WILL be cleared for the next panel.***",
+    "title": "HIDIVE Presents The World Is Dancing Episode 1 Encore and Episode 2 North American Premiere",
+    "description": "Why do people dance? Join us for this exclusive Director's Cut of Episodes 1 & 2 of this sweeping historical drama that will make you laugh, cry and maybe even dance. ***This room will NOT be cleared prior to this panel. This room WILL be cleared for the next panel.***",
     "cleared_before": false,
     "cleared_after": true,
     "is_18_plus": false
@@ -1215,6 +1260,36 @@
     "is_18_plus": false
   },
   {
+    "id": "358104f2",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "7:00 PM",
+    "end_time": "8:00 PM",
+    "start_int": 1140,
+    "end_int": 1200,
+    "room": "AX Dance",
+    "title": "DJ KZA",
+    "description": "KZA is a Bass House and Trap Artist with an background of being an open format dj and artistic influences from Animemo/ shibuya punk aka Grind fiction which consist of titles/genres such as, jet set radio, the world ends with you, persona, gachiakuta, and more,",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "bdefc801",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "7:15 PM",
+    "end_time": "8:00 PM",
+    "start_int": 1155,
+    "end_int": 1200,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Echoheart",
+    "description": "Echoheart is a Los Angeles-based anisong and J-pop cover band dedicated to bringing the world of anime music to life. Inspired by iconic anime bands and soundtracks, the group combines live musicianship with cosplay and performance to recreate the excitement of seeing your favorite 2D bands on stage. From high-energy rock anthems to emotional ballads, Echoheart celebrates the music that connects anime fans around the world.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "a25cfb82",
     "date": "July 2, 2026",
     "day": 1,
@@ -1225,6 +1300,21 @@
     "room": "Lounge 21",
     "title": "WLL",
     "description": "WLL is a DJ and producer blending House, UK Garage, and electronic music with the energy of anime culture. Known for high-energy sets packed with anime edits, J-pop remixes, and euphoric club grooves, WLL transforms iconic fandom moments into dancefloor experiences. From Anime Expo to anime afterparties across the U.S., WLL brings together rave culture and anime fandom into one unforgettable vibe.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "290923c6",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "8:00 PM",
+    "end_time": "9:00 PM",
+    "start_int": 1200,
+    "end_int": 1260,
+    "room": "AX Dance",
+    "title": "Welksie",
+    "description": "Welksie is an LA-based producer/DJ passionate about musical storytelling, emotional journeys, and challenging expectations. Weaving EDM/Bass/J-Pop in concert with hand-synced anime visuals, Welksie's unique sound and “live-AMV” aesthetic aim to break down barriers between music and cultures alike.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -1365,6 +1455,21 @@
     "is_18_plus": false
   },
   {
+    "id": "90c6e84f",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "9:00 PM",
+    "end_time": "10:00 PM",
+    "start_int": 1260,
+    "end_int": 1320,
+    "room": "AX Dance",
+    "title": "ZOA",
+    "description": "ZOA is a Metalcore and bass music project from Denver Colorado.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "758a862c",
     "date": "July 2, 2026",
     "day": 1,
@@ -1378,6 +1483,21 @@
     "cleared_before": true,
     "cleared_after": false,
     "is_18_plus": true
+  },
+  {
+    "id": "66d2b6e3",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "9:30 PM",
+    "end_time": "10:30 PM",
+    "start_int": 1290,
+    "end_int": 1350,
+    "room": "Lounge 21",
+    "title": "Mariachi Eclipse",
+    "description": "Mariachi Eclipse is a mariachi ensemble that brings anime and video game music into a live performance setting. Rooted in traditional mariachi instrumentation, the group explores well-known Japanese soundtracks through a different musical lens while maintaining the character of both styles. Their performances focus on ensemble balance, musical detail, and a strong connection with the audience, creating a sound that feels both grounded and distinctive across cultural spaces.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
   },
   {
     "id": "b2dce770",
@@ -1530,6 +1650,21 @@
     "is_18_plus": false
   },
   {
+    "id": "10995fdb",
+    "date": "July 2, 2026",
+    "day": 1,
+    "start_time": "11:00 PM",
+    "end_time": "12:30 AM",
+    "start_int": 1380,
+    "end_int": 1470,
+    "room": "AX Dance",
+    "title": "MEIRLIN",
+    "description": "Tokyo-born and LA-based, MEIRLIN is an international DJ and producer known for her high-energy main-stage house and techno sound.\n\nShe has released charting tracks on leading labels including Revealed, Smash The House, and Protocol, earning support from Hardwell, Dimitri Vegas & Like Mike, Nicky Romero, and more. Her 2024 single “Spaceflight 2099” premiered by Hardwell at Ultra Miami and surpassed 500,000 streams. A former resident at Zouk Las Vegas and part of Insomniac's artist since 2019, MEIRLIN has performed at top venues worldwide and continues to build global momentum across the U.S., Asia, and Europe.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "4651a268",
     "date": "July 2, 2026",
     "day": 1,
@@ -1555,6 +1690,21 @@
     "room": "AX Dance",
     "title": "Khaimera",
     "description": "Khaimera is an LA-Based DJ/Producer blending EDM, Anime, and Video Game sounds into high energy sets. Known for EDM and Anime remixes and rave edits, he delivers nostalgic, and high energy performances where gaming and rave culture collide.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "58851eb9",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "9:45 AM",
+    "end_time": "10:45 AM",
+    "start_int": 585,
+    "end_int": 645,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Mikan Project",
+    "description": "Mikan Project is an online collective of musicians delivering a zesty sound to the Western J-Music scene. They have performed at major industry events, notable ones being Anime Expo and Anime Boston. Online, their tight horn section is a go-to for Vocaloid producers, cover artists, as well as both indie and corporate VTubers; contributing to a wide range of projects spanning original compositions, anime, and video game music.\n\nWhether they're in the studio, supporting the show, or taking center stage, Mikan Project brings a citrus fresh energy that leaves a lasting impression.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -2034,7 +2184,7 @@
     "end_int": 830,
     "room": "Main Events (Crypto.com Arena)",
     "title": "STEEL BALL RUN JoJo's Bizarre Adventure Special Panel featuring Yugo Kanno",
-    "description": "Celebrate the highly anticipated STEEL BALL RUN JoJo's Bizarre Adventure with a special panel featuring acclaimed composer Yugo Kanno and more special guests! Experience a special live performance, plus a conversation with the guests you won't want to miss.",
+    "description": "Celebrate the highly anticipated STEEL BALL RUN JoJo's Bizarre Adventure with a special panel featuring acclaimed composer Yugo Kanno, Daman Mills and Kaiji Tang! Experience a special live performance, plus a conversation with the guests you won't want to miss.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -2110,6 +2260,21 @@
     "room": "511ABC",
     "title": "Cosplay Crash Course: From Idea to Execution",
     "description": "This cosplay crash course breaks down the process from concept to completion. Topics include character selection, material choices, build planning, and key techniques to help create cohesive, well-executed cosplays.\n*Presented by AX26 Cosplay Senpai Mega Mite",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "733ac7c5",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "1:30 PM",
+    "end_time": "2:15 PM",
+    "start_int": 810,
+    "end_int": 855,
+    "room": "Lounge 21",
+    "title": "Allie Violin",
+    "description": "Since graduating with a Bachelor's in Music (Violin performance) in 2018, Allie has become an established musician in the Salt Lake City music scene. She has performed with various artists, including Kurt Bestor, Jon Batiste, Olivia Rodrigo, Lindsey Stirling, and more.\n\nAs she loves to play video games and watch anime in her free time, Allie enjoys combining her passions by arranging and performing electric violin covers from her favorite franchises. She's especially excited to bring her arrangements to the Anime Expo stage!",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -2280,6 +2445,21 @@
     "is_18_plus": false
   },
   {
+    "id": "76e46891",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "3:00 PM",
+    "end_time": "3:30 PM",
+    "start_int": 900,
+    "end_int": 930,
+    "room": "Lounge 21",
+    "title": "niccodilly",
+    "description": "Cosplay vocalist niccodilly is making her first appearance at Anime Expo as one of the most iconic anime bassist ---- Mio Akiyama from K-ON!. Featuring beloved anisongs and J-rock hits from the 2000s-2010s, get ready for a nostalgic anisong experience with live vocals, cosplay and bass guitar (!?)",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "1147fce0",
     "date": "July 3, 2026",
     "day": 2,
@@ -2410,6 +2590,21 @@
     "room": "Peacock Theater",
     "title": "Witch Hat Atelier: A Magical Chat with the Cast and Creator",
     "description": "Step into the atelier! Let's take a magical look at Witch Hat Atelier behind-the-scenes with special guests: Kamome Shirahama (Manga Creator), Rena Motomura (Voice of Coco), and Natsuki Hanae (Voice of Qifrey). Learn what it takes to become a master witch in this exciting discussion!",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "d49c2110",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "3:30 PM",
+    "end_time": "4:15 PM",
+    "start_int": 930,
+    "end_int": 975,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Aimai Mirai",
+    "description": "Dance, jump and rock out wtih Aimai Mirai as they perform fresh and classic Anisong for an unstoppable anime song concert! Hailing from San Francisco Bay Area, Aimai Mirai is a high energy anime cover band composed of five passionate cosplayers, musicians, and more!",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -2700,6 +2895,21 @@
     "is_18_plus": false
   },
   {
+    "id": "111fccd2",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "6:00 PM",
+    "end_time": "7:00 PM",
+    "start_int": 1080,
+    "end_int": 1140,
+    "room": "Lounge 21",
+    "title": "ZOA",
+    "description": "ZOA is a Metalcore and bass music project from Denver Colorado.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "b70a7074",
     "date": "July 3, 2026",
     "day": 2,
@@ -2730,7 +2940,7 @@
     "is_18_plus": false
   },
   {
-    "id": "c1b159b9",
+    "id": "ec47fcd4",
     "date": "July 3, 2026",
     "day": 2,
     "start_time": "6:45 PM",
@@ -2738,8 +2948,8 @@
     "start_int": 1125,
     "end_int": 1175,
     "room": "409AB",
-    "title": "It's Anime: New Announcement with Special Guests",
-    "description": "“It's Anime,” the ultimate new destination for anime fans, is unveiling exciting announcements with special voice actor guests! Join us for exciting announcement, exclusive appearances, and more — plus a guaranteed giveaway for every attendee! ***This room will NOT be cleared prior to this panel. This room WILL be cleared for the next panel.***",
+    "title": "\"It's Anime\" Time feat. Zeno Robinson & Caitlyn Elizabeth",
+    "description": "A panel for the anime-dedicated FAST channel \"Its Anime\"! Please welcome Zeno Robinson and Caitlyn Elizabeth to dive deep into the appeal of their shows and their work as voice actors! We'll also be showing exclusive video and dropping some shocking news!!! If you love ANIME, VOICE-ACTORS and super cool GIVEAWAYS, you absolutely CANNOT miss this—come join the ultimate panel! ***This room will NOT be cleared prior to this panel. This room WILL be cleared for the next panel.***",
     "cleared_before": false,
     "cleared_after": true,
     "is_18_plus": false
@@ -2820,6 +3030,21 @@
     "is_18_plus": false
   },
   {
+    "id": "6eef323e",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "7:00 PM",
+    "end_time": "8:00 PM",
+    "start_int": 1140,
+    "end_int": 1200,
+    "room": "AX Dance",
+    "title": "Faith in The Glitch",
+    "description": "Faith in the Glitch has been a resident DJ for the nationally touring Future Funk party Yoi Toki, sharing stages with artists like Yung Bae, Saint Pepsi, and Macross 82-99. A lifelong anime nerd with a deep love for the culture, FitG blends anime edits, nostalgic mashups, fresh scratching, and high-energy party vibes into unforgettable sets. With decades behind the decks, Faith in the Glitch has rocked crowds at Otakon, Katsucon, Sakura-Con, and more—bringing convention energy and dance floor chaos wherever they go. Now, FitG is ready to bring that same energy west to Anime Expo in Los Angeles.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "43737f7e",
     "date": "July 3, 2026",
     "day": 2,
@@ -2835,6 +3060,21 @@
     "is_18_plus": true
   },
   {
+    "id": "f43cc5e6",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "7:30 PM",
+    "end_time": "10:00 PM",
+    "start_int": 1170,
+    "end_int": 1320,
+    "room": "406AB",
+    "title": "Design Your Own Stoneware Piece",
+    "description": "Join us at the 2026 Anime Expo for a paint-your-own pottery workshop. This workshop is a great way to get creative, create a one-of-a-kind keepsake from the Expo, and, as a bonus, you get time to rest your feet after a long day of exploring. ***This room WILL be cleared prior to this panel. This room will NOT be cleared after this panel.***",
+    "cleared_before": true,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "7b6d8aa5",
     "date": "July 3, 2026",
     "day": 2,
@@ -2845,6 +3085,21 @@
     "room": "404AB",
     "title": "All About Cosplay in Tokyo",
     "description": "Are you planning a trip to Tokyo or curious about what cosplay is like there? Come learn about the best places to buy supplies, popular events and photography spaces, and the rules of cosplay culture in Japan!",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "60112a80",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "7:45 PM",
+    "end_time": "8:45 PM",
+    "start_int": 1185,
+    "end_int": 1245,
+    "room": "Lounge 21",
+    "title": "Ham Sandwich",
+    "description": "Ham Sandwich is one of the fastest rising artists in the underground rap ecosystem -- especially within the anime & nerdcore rap scenes. Quietly amassing over 100 million streams across all platforms, Ham has proved that his unique blend of wit, cheekiness, character, and heart has legs.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -2919,7 +3174,7 @@
     "end_int": 1265,
     "room": "511ABC",
     "title": "From Digital Manga to Anime: Inside C'moA Comics' Latest Adaptations & Fan Screening",
-    "description": "Join C'moA Comics, one of Japan's leading digital manga publishers, for an inside look at how digital titles become anime. Enjoy behind-the-scenes stories from recent adaptations and a fan screening (title TBA), plus prize opportunities for attendees. ***This room will NOT be cleared prior to this panel. This room WILL be cleared for the next panel.***",
+    "description": "Join C'moA Comics, one of Japan's leading digital manga publishers, for an inside look at how digital titles become anime. Enjoy behind-the-scenes stories from recent adaptations and a fan screening of Episode 1 from \"Pardon the intrusion, I'm Home!\", plus prize opportunities for attendees. ***This room will NOT be cleared prior to this panel. This room WILL be cleared for the next panel.***",
     "cleared_before": false,
     "cleared_after": true,
     "is_18_plus": false
@@ -2950,6 +3205,21 @@
     "room": "Petree Hall",
     "title": "Kizuna AI Special Live at AX 2026",
     "description": "The pioneer of VTubers, Kizuna AI, is coming to Anime Expo for a special live performance! Kizuna AI herself will perform a DJ set featuring her original EDM tracks and remixes of her popular songs, including a live performance. Don't miss this chance to see Kizuna AI at a stage at Anime Expo!",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "d1e7cda5",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "8:30 PM",
+    "end_time": "9:15 PM",
+    "start_int": 1230,
+    "end_int": 1275,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Atara Ara",
+    "description": "Atara Ara is a four-piece rock band from Orange County mixing Japanese rock and American alt. Energetic, melodic, and shaped by a love for both scenes.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -3105,6 +3375,21 @@
     "is_18_plus": true
   },
   {
+    "id": "b542e350",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "10:00 PM",
+    "end_time": "11:00 PM",
+    "start_int": 1320,
+    "end_int": 1380,
+    "room": "AX Dance",
+    "title": "Flipboitamidles",
+    "description": "Flipboitamidles is an innovative DJ and producer known for his captivating remixes and mashups. He gained popularity for creating unique and nostalgic remixes that transport listeners to their favorite gaming and animated worlds which garnered him a dedicated fanbase across various online platforms.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "3c49f141",
     "date": "July 3, 2026",
     "day": 2,
@@ -3150,6 +3435,21 @@
     "is_18_plus": true
   },
   {
+    "id": "a3962588",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "10:15 PM",
+    "end_time": "11:45 PM",
+    "start_int": 1335,
+    "end_int": 1425,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Studio Phoebe",
+    "description": "Studio Phoebe is a live band dedicated to reimagining anime, Studio Ghibli, and video game music. Blending jazz, orchestral textures, and modern grooves, the group transforms beloved soundtracks into concert experiences. With a focus on musical storytelling and emotional depth, Studio Phoebe connects audiences to the worlds and characters they love while showcasing the artistry and global impact of Japanese pop culture.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "e85c0218",
     "date": "July 3, 2026",
     "day": 2,
@@ -3180,6 +3480,21 @@
     "is_18_plus": true
   },
   {
+    "id": "0ad5bf02",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "11:00 PM",
+    "end_time": "12:00 AM",
+    "start_int": 1380,
+    "end_int": 1440,
+    "room": "Lounge 21",
+    "title": "ChromeSyndicate",
+    "description": "ChromeSyndicate is a SoCal based DJ that primarily specializes in high energy EDM, dubstep, and heavy bass music, while incorporating a variety of elements such as anime, kpop, emo, cyberpunk, memes, and video games.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "b816a316",
     "date": "July 3, 2026",
     "day": 2,
@@ -3205,6 +3520,21 @@
     "room": "AX Dance",
     "title": "DJ Okami",
     "description": "San Diego native DJ Okami turned a high school hobby into a lifelong craft. Known for taking his listeners on a rhythmic journey, DJ Okami specializes in curating high energy sets that keep the dance floor moving from start to finish!",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "452ff218",
+    "date": "July 3, 2026",
+    "day": 2,
+    "start_time": "12:45 AM",
+    "end_time": "1:45 AM",
+    "start_int": 1485,
+    "end_int": 1545,
+    "room": "Lounge 21",
+    "title": "DJ KZA",
+    "description": "KZA is a Bass House and Trap Artist with an background of being an open format dj and artistic influences from Animemo/ shibuya punk aka Grind fiction which consist of titles/genres such as, jet set radio, the world ends with you, persona, gachiakuta, and more,",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -3825,6 +4155,21 @@
     "is_18_plus": false
   },
   {
+    "id": "f63f9abf",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "1:45 PM",
+    "end_time": "2:30 PM",
+    "start_int": 825,
+    "end_int": 870,
+    "room": "AX Crossing",
+    "title": "Allie Violin",
+    "description": "Since graduating with a Bachelor's in Music (Violin performance) in 2018, Allie has become an established musician in the Salt Lake City music scene. She has performed with various artists, including Kurt Bestor, Jon Batiste, Olivia Rodrigo, Lindsey Stirling, and more.\n\nAs she loves to play video games and watch anime in her free time, Allie enjoys combining her passions by arranging and performing electric violin covers from her favorite franchises. She's especially excited to bring her arrangements to the Anime Expo stage!",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "bd0265b8",
     "date": "July 4, 2026",
     "day": 3,
@@ -3896,6 +4241,21 @@
     "title": "Anime Expo Plushie Making Workshop Hosted by The Plushie Workshop",
     "description": "Create your very own Plushumi The Plushie Workshop plushie at Anime Expo 2026! Choose between our adorable White Bear or Beige Bunny and bring your plushie to life through stuffing, assembly, and customization. You'll even get to see our signature knitting devices in action and try them yourself! ***This room WILL be cleared prior to this panel. This room will NOT be cleared after this panel.***",
     "cleared_before": true,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "ee282f40",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "2:30 PM",
+    "end_time": "3:15 PM",
+    "start_int": 870,
+    "end_int": 915,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Echoheart",
+    "description": "Echoheart is a Los Angeles-based anisong and J-pop cover band dedicated to bringing the world of anime music to life. Inspired by iconic anime bands and soundtracks, the group combines live musicianship with cosplay and performance to recreate the excitement of seeing your favorite 2D bands on stage. From high-energy rock anthems to emotional ballads, Echoheart celebrates the music that connects anime fans around the world.",
+    "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
   },
@@ -4140,6 +4500,21 @@
     "is_18_plus": false
   },
   {
+    "id": "9e762ba1",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "4:15 PM",
+    "end_time": "5:15 PM",
+    "start_int": 975,
+    "end_int": 1035,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Mikan Project",
+    "description": "Mikan Project is an online collective of musicians delivering a zesty sound to the Western J-Music scene. They have performed at major industry events, notable ones being Anime Expo and Anime Boston. Online, their tight horn section is a go-to for Vocaloid producers, cover artists, as well as both indie and corporate VTubers; contributing to a wide range of projects spanning original compositions, anime, and video game music.\n\nWhether they're in the studio, supporting the show, or taking center stage, Mikan Project brings a citrus fresh energy that leaves a lasting impression.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "546a289c",
     "date": "July 4, 2026",
     "day": 3,
@@ -4350,6 +4725,21 @@
     "is_18_plus": false
   },
   {
+    "id": "8d655b72",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "6:15 PM",
+    "end_time": "7:00 PM",
+    "start_int": 1095,
+    "end_int": 1140,
+    "room": "Lounge 21",
+    "title": "JooHee",
+    "description": "JooHee (@musicbyjoohee) is a Korean-American YouTube artist and cosplayer performing anime and game music. With a global audience, her top covers include \"I Really Want to Stay at Your House\" from Cyberpunk, \"Dark Aria\" from Solo Leveling, and Naruto's \"Blue Bird.\"",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "b59705f2",
     "date": "July 4, 2026",
     "day": 3,
@@ -4365,7 +4755,7 @@
     "is_18_plus": false
   },
   {
-    "id": "fc5d10f1",
+    "id": "8215051c",
     "date": "July 4, 2026",
     "day": 3,
     "start_time": "6:30 PM",
@@ -4373,11 +4763,11 @@
     "start_int": 1110,
     "end_int": 1160,
     "room": "JW Diamond",
-    "title": "Crunchyroll Presents: Firefly Wedding and The Ogre's Bride",
-    "description": "Firefly Wedding: On the surface, Satoko has it all—she's beautiful, the daughter of a nobleman, and at a prime age for marriage. Unfortunately, she is also quite ill and only has a short time left to live. Before she can secure a marriage that will redeem her worth in her family's eyes, she finds herself the target of the mysterious assassin Shinpei, and her plans are put in jeopardy. In order to save herself, she makes a desperate proposal—of marriage! When it comes to love, however, Shinpei takes “until death do we part” seriously. The Ogre's Bride: The ayakashi and humans coexist in harmony. The ayakashi, having superior abilities and beautiful appearances, sometimes find their partner among human women, making them their \"\"bride\"\". The bride, in exchange for bringing prosperity, receives absolute love from the ayakashi. Yuzu is constantly compared to her sister, a bride of a demon fox, and is resented by her family every day. One day, when Yuzu just couldn't take things anymore, a man appeared before her on a bridge. This man is the most beautiful man Yuzu has ever seen... and he's calling her his wife?! The most powerful, \"\"cold-hearted\"\" ayakashi is pouring his heart out for Yuzu?! Join us for two early screenings of Firefly Wedding and The Ogre's Bride! ***This room will NOT be cleared prior to this panel. This room WILL be cleared for the next panel.***",
-    "cleared_before": false,
-    "cleared_after": true,
-    "is_18_plus": false
+    "title": "Crunchyroll Presents: Firefly Wedding and The Ogre's Bride (18+)",
+    "description": "Firefly Wedding: On the surface, Satoko has it all—she's beautiful, the daughter of a nobleman, and at a prime age for marriage. Unfortunately, she is also quite ill and only has a short time left to live. Before she can secure a marriage that will redeem her worth in her family's eyes, she finds herself the target of the mysterious assassin Shinpei, and her plans are put in jeopardy. In order to save herself, she makes a desperate proposal—of marriage! When it comes to love, however, Shinpei takes “until death do we part” seriously. The Ogre's Bride: The ayakashi and humans coexist in harmony. The ayakashi, having superior abilities and beautiful appearances, sometimes find their partner among human women, making them their \"\"bride\"\". The bride, in exchange for bringing prosperity, receives absolute love from the ayakashi. Yuzu is constantly compared to her sister, a bride of a demon fox, and is resented by her family every day. One day, when Yuzu just couldn't take things anymore, a man appeared before her on a bridge. This man is the most beautiful man Yuzu has ever seen... and he's calling her his wife?! The most powerful, \"\"cold-hearted\"\" ayakashi is pouring his heart out for Yuzu?! Join us for two early screenings of Firefly Wedding and The Ogre's Bride! ***This room WILL be cleared prior to this panel. This room will not be cleared for the next panel.***",
+    "cleared_before": true,
+    "cleared_after": false,
+    "is_18_plus": true
   },
   {
     "id": "e3e5d088",
@@ -4434,7 +4824,22 @@
     "end_int": 1185,
     "room": "Peacock Theater",
     "title": "The Oblivious Saint Can't Contain Her Power Special Premiere",
-    "description": "Don't miss your chance to be among the first to watch the first two episodes of The Oblivious Saint Can't Contain Her Power! Featuring special guests from Japan, cast members Rie Takahashi and Makoto Furukawa share their thoughts on the new anime series and invite you to enjoy the premiere!",
+    "description": "Don't miss your chance to be among the first to watch the premiere of the second episode of The Oblivious Saint Can't Contain Her Power! Featuring special guests from Japan, cast members Rie Takahashi and Makoto Furukawa share their thoughts on the new anime series and invite you to enjoy the premiere!",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "7c082221",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "7:00 PM",
+    "end_time": "8:00 PM",
+    "start_int": 1140,
+    "end_int": 1200,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Bon Odori Dancing",
+    "description": "",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -4545,7 +4950,7 @@
     "is_18_plus": false
   },
   {
-    "id": "96fadc6b",
+    "id": "19a6c2d5",
     "date": "July 4, 2026",
     "day": 3,
     "start_time": "8:30 PM",
@@ -4553,7 +4958,7 @@
     "start_int": 1230,
     "end_int": 1410,
     "room": "Main Events (Crypto.com Arena)",
-    "title": "2026 Masquerade",
+    "title": "Anime Expo 2026 Masquerade",
     "description": "The AX Masquerade is Anime Expo's longest-running and most prestigious cosplay competition, where talented cosplayers will now take the Main Events stage at Crypto.com Arena to compete for incredible prizes and the coveted Best in Show title.",
     "cleared_before": false,
     "cleared_after": false,
@@ -4585,6 +4990,21 @@
     "room": "Main Events (Crypto.com Arena)",
     "title": "Bluemoon Sanitizer (Halftime performance at AX Masquerade)",
     "description": "Bluemoon Sanitizer is a San Diego anime & game music cover band known for energetic live performances of anime openings, game soundtracks, and J-pop hits, performed with vibrant instrumentation and a passion for the anime community!",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "4f669144",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "8:45 PM",
+    "end_time": "9:45 PM",
+    "start_int": 1245,
+    "end_int": 1305,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Mariachi Eclipse",
+    "description": "Mariachi Eclipse is a mariachi ensemble that brings anime and video game music into a live performance setting. Rooted in traditional mariachi instrumentation, the group explores well-known Japanese soundtracks through a different musical lens while maintaining the character of both styles. Their performances focus on ensemble balance, musical detail, and a strong connection with the audience, creating a sound that feels both grounded and distinctive across cultural spaces.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -4740,6 +5160,21 @@
     "is_18_plus": true
   },
   {
+    "id": "4a132462",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "9:45 PM",
+    "end_time": "10:45 PM",
+    "start_int": 1305,
+    "end_int": 1365,
+    "room": "Lounge 21",
+    "title": "Welksie",
+    "description": "Welksie is an LA-based producer/DJ passionate about musical storytelling, emotional journeys, and challenging expectations. Weaving EDM/Bass/J-Pop in concert with hand-synced anime visuals, Welksie's unique sound and “live-AMV” aesthetic aim to break down barriers between music and cultures alike.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "213e262a",
     "date": "July 4, 2026",
     "day": 3,
@@ -4860,6 +5295,21 @@
     "is_18_plus": true
   },
   {
+    "id": "940adae4",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "10:45 PM",
+    "end_time": "11:45 PM",
+    "start_int": 1365,
+    "end_int": 1425,
+    "room": "Lounge 21",
+    "title": "MEIRLIN",
+    "description": "Tokyo-born and LA-based, MEIRLIN is an international DJ and producer known for her high-energy main-stage house and techno sound.\n\nShe has released charting tracks on leading labels including Revealed, Smash The House, and Protocol, earning support from Hardwell, Dimitri Vegas & Like Mike, Nicky Romero, and more. Her 2024 single “Spaceflight 2099” premiered by Hardwell at Ultra Miami and surpassed 500,000 streams. A former resident at Zouk Las Vegas and part of Insomniac's artist since 2019, MEIRLIN has performed at top venues worldwide and continues to build global momentum across the U.S., Asia, and Europe.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "bf068f6d",
     "date": "July 4, 2026",
     "day": 3,
@@ -4900,6 +5350,51 @@
     "room": "AX Dance",
     "title": "NTXC",
     "description": "Starting in 2015, NTXC is an electronic music artist known for delivering high-energy, immersive DJ sets that blend elements of hardstyle, techno, and bass music. With a growing presence and a focus on authenticity, NTXC continues to build a reputation as a versatile and engaging artist, connecting with audiences through both sound and energy.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "11f37fc3",
+    "date": "July 4, 2026",
+    "day": 3,
+    "start_time": "12:45 AM",
+    "end_time": "1:45 AM",
+    "start_int": 1485,
+    "end_int": 1545,
+    "room": "Lounge 21",
+    "title": "DJMACHINEGOD",
+    "description": "DJMACHINEGOD is an anikura DJ currently residing in the San Francisco Bay Area, playing dubstep, hardcore, and hard dance remixes of popular anime or idol music. His main passion is anime horse girls and has spent hundreds, and possibly even thousands more on Uma Musume. He has performed at nightclubs, local events, anime festivals, and online shows throughout the Bay Area and aims to bring the fattest drops to any anikura set.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "ddf69058",
+    "date": "July 5, 2026",
+    "day": 4,
+    "start_time": "9:45 AM",
+    "end_time": "11:15 AM",
+    "start_int": 585,
+    "end_int": 675,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Studio Phoebe",
+    "description": "Studio Phoebe is a live band dedicated to reimagining anime, Studio Ghibli, and video game music. Blending jazz, orchestral textures, and modern grooves, the group transforms beloved soundtracks into concert experiences. With a focus on musical storytelling and emotional depth, Studio Phoebe connects audiences to the worlds and characters they love while showcasing the artistry and global impact of Japanese pop culture.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "1aecbbb9",
+    "date": "July 5, 2026",
+    "day": 4,
+    "start_time": "10:00 AM",
+    "end_time": "1:15 PM",
+    "start_int": 600,
+    "end_int": 795,
+    "room": "408AB",
+    "title": "AMV Awards",
+    "description": "Celebrate the best in anime and music fusion at the Anime Expo 2026 Anime Music Video (AMV) Competition Awards! Join us as we unveil the winners across various categories, showcasing exceptional artistry, storytelling, and technical prowess.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -5100,6 +5595,21 @@
     "is_18_plus": false
   },
   {
+    "id": "0f58152a",
+    "date": "July 5, 2026",
+    "day": 4,
+    "start_time": "12:00 PM",
+    "end_time": "12:30 PM",
+    "start_int": 720,
+    "end_int": 750,
+    "room": "AX Crossing",
+    "title": "niccodilly",
+    "description": "Cosplay vocalist niccodilly is making her first appearance at Anime Expo as one of the most iconic anime bassist ---- Mio Akiyama from K-ON!. Featuring beloved anisongs and J-rock hits from the 2000s-2010s, get ready for a nostalgic anisong experience with live vocals, cosplay and bass guitar (!?)",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "9654e4da",
     "date": "July 5, 2026",
     "day": 4,
@@ -5155,6 +5665,21 @@
     "room": "The Novo",
     "title": "BIGWEST presents - The Super Dimension Fortress Macross: Do You Remember Love?",
     "description": "Experience the first official North American screening of The Super Dimension Fortress Macross: Do You Remember Love? during Anime Expo 2026. Join the premier presentation of the legendary masterpiece that has come to define the MACROSS franchise.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "33a5de8a",
+    "date": "July 5, 2026",
+    "day": 4,
+    "start_time": "12:15 PM",
+    "end_time": "1:00 PM",
+    "start_int": 735,
+    "end_int": 780,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Aimai Mirai",
+    "description": "Dance, jump and rock out wtih Aimai Mirai as they perform fresh and classic Anisong for an unstoppable anime song concert! Hailing from San Francisco Bay Area, Aimai Mirai is a high energy anime cover band composed of five passionate cosplayers, musicians, and more!",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
@@ -5220,6 +5745,21 @@
     "is_18_plus": false
   },
   {
+    "id": "6cbe07b2",
+    "date": "July 5, 2026",
+    "day": 4,
+    "start_time": "1:15 PM",
+    "end_time": "3:45 PM",
+    "start_int": 795,
+    "end_int": 945,
+    "room": "406AB",
+    "title": "Design Your Own Stoneware Piece",
+    "description": "Join us at the 2026 Anime Expo for a paint-your-own pottery workshop. This workshop is a great way to get creative, create a one-of-a-kind keepsake from the Expo, and, as a bonus, you get time to rest your feet after a long day of exploring. ***This room WILL be cleared prior to this panel. This room will NOT be cleared after this panel.***",
+    "cleared_before": true,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "029a562a",
     "date": "July 5, 2026",
     "day": 4,
@@ -5265,6 +5805,21 @@
     "is_18_plus": false
   },
   {
+    "id": "4fac50ed",
+    "date": "July 5, 2026",
+    "day": 4,
+    "start_time": "1:45 PM",
+    "end_time": "2:45 PM",
+    "start_int": 825,
+    "end_int": 885,
+    "room": "Lounge 21",
+    "title": "Faith in The Glitch",
+    "description": "Faith in the Glitch has been a resident DJ for the nationally touring Future Funk party Yoi Toki, sharing stages with artists like Yung Bae, Saint Pepsi, and Macross 82-99. A lifelong anime nerd with a deep love for the culture, FitG blends anime edits, nostalgic mashups, fresh scratching, and high-energy party vibes into unforgettable sets. With decades behind the decks, Faith in the Glitch has rocked crowds at Otakon, Katsucon, Sakura-Con, and more—bringing convention energy and dance floor chaos wherever they go. Now, FitG is ready to bring that same energy west to Anime Expo in Los Angeles.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
     "id": "d708d922",
     "date": "July 5, 2026",
     "day": 4,
@@ -5275,6 +5830,21 @@
     "room": "403AB",
     "title": "Make Your Debut as an Author in Japan!",
     "description": "Ever dreamed of publishing your story as a light novel —manga or even an anime— in Japan? Join KADOKAWA editor Satoshi Arima (The Rising of the Shield Hero, Full Metal Panic!) and authors Frettiko & Kazesenken, to learn how English writers can break into the Japanese market via our upcoming contest.",
+    "cleared_before": false,
+    "cleared_after": false,
+    "is_18_plus": false
+  },
+  {
+    "id": "1de10458",
+    "date": "July 5, 2026",
+    "day": 4,
+    "start_time": "2:00 PM",
+    "end_time": "2:45 PM",
+    "start_int": 840,
+    "end_int": 885,
+    "room": "Beer Garden at Peacock Place",
+    "title": "Atara Ara",
+    "description": "Atara Ara is a four-piece rock band from Orange County mixing Japanese rock and American alt. Energetic, melodic, and shaped by a love for both scenes.",
     "cleared_before": false,
     "cleared_after": false,
     "is_18_plus": false
